@@ -1,6 +1,6 @@
 <template>
   <GridSection
-    className="popular-artists"
+    class-name="popular-artists"
     title="Popular Artists"
   >
     <template #articles>
@@ -13,11 +13,11 @@
             :src="getRandomLoremFlickerImage()"
             alt="artist"
             class="main elevation-8"
-          />
+          >
           <PlayBtn />
         </div>
         <div class="px-2 pb-2">
-          <h3>{{faker.person.fullName()}}</h3>
+          <h3>{{ faker.person.fullName() }}</h3>
           <p>Artist</p>
         </div>
       </article>

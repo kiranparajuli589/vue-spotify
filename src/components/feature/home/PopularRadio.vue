@@ -13,11 +13,11 @@
             :src="getRandomLoremFlickerImage()"
             alt="artist"
             class="main"
-          />
+          >
           <PlayBtn />
         </div>
         <div class="px-2 pb-2">
-          <p>{{faker.lorem.words(6)}}</p>
+          <p>{{ faker.lorem.words(6) }}</p>
         </div>
       </article>
     </template>

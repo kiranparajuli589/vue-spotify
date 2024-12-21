@@ -1,13 +1,21 @@
 <template>
-  <section :class="{
-    'home-section': true,
-    [className]: true
-  }">
+  <section
+    :class="{
+      'home-section': true,
+      [className]: true
+    }"
+  >
     <header>
       <h3>
-        <a href="#" class="title">{{title}}</a>
+        <a
+          href="#"
+          class="title"
+        >{{ title }}</a>
       </h3>
-      <a href="#" class="hover-underline">See All</a>
+      <a
+        href="#"
+        class="hover-underline"
+      >See All</a>
     </header>
 
     <div class="articles">
@@ -84,6 +92,7 @@ defineProps({
 
     article {
       border-radius: 8px;
+      cursor: pointer;
       &:hover {
         background: rgb(26 26 26);
         .play-button {

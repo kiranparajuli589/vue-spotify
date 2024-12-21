@@ -1,13 +1,16 @@
 <template>
   <nav class="app_bar">
     <div class="branding">
-      <a href="/" title="Home">
+      <a
+        href="/"
+        title="Home"
+      >
         <img
           src="/logo.png"
           height="42"
           width="42"
           alt="Spotify"
-        />
+        >
       </a>
     </div>
     <div class="flex-grow-1" />
@@ -19,63 +22,73 @@
         width="28"
       />
     </button>
-    <form :class="{
-      'd-flex': true,
-      'search-focused': isSearchInputFocused
-    }" @submit="onSubmit">
-        <img
-          src="@/assets/icons/svgs/search.svg"
-          height="24"
-          width="24"
-          class="search-icon"
-          alt="search"
-        />
-        <input
-          type="search"
-          v-model="search"
-          name="search"
-          placeholder="What do you want to play?"
-          @focus="isSearchInputFocused = true"
-          @blur="isSearchInputFocused = false"
-        />
+    <form
+      :class="{
+        'd-flex': true,
+        'search-focused': isSearchInputFocused
+      }"
+      @submit="onSubmit"
+    >
+      <img
+        src="@/assets/icons/svgs/search.svg"
+        height="24"
+        width="24"
+        class="search-icon"
+        alt="search"
+      >
+      <input
+        v-model="search"
+        type="search"
+        name="search"
+        placeholder="What do you want to play?"
+        @focus="isSearchInputFocused = true"
+        @blur="isSearchInputFocused = false"
+      >
 
-        <template v-if="search.length > 0">
-          <button
-            type="reset"
-            @click="search = ''"
-            class="reset-btn"
-          >
-            <VImg
-              src="@/assets/icons/svgs/close.svg"
-              height="28"
-              width="28"
-            />
-          </button>
-        </template>
-        <template v-else>
-          <button
-            type="submit"
-          >
-            <VImg
-              src="@/assets/icons/svgs/folder_outlined.svg"
-              height="28"
-              width="28"
-            />
-          </button>
-        </template>
+      <template v-if="search.length > 0">
+        <button
+          class="reset-btn"
+          type="reset"
+          @click="search = ''"
+        >
+          <VImg
+            src="@/assets/icons/svgs/close.svg"
+            height="28"
+            width="28"
+          />
+        </button>
+      </template>
+      <template v-else>
+        <button
+          type="submit"
+        >
+          <VImg
+            src="@/assets/icons/svgs/folder_outlined.svg"
+            height="28"
+            width="28"
+          />
+        </button>
+      </template>
     </form>
     <div class="flex-grow-1" />
     <div class="auth-links">
-      <a href="#" class="flex-centered">
+      <a
+        href="#"
+        class="flex-centered"
+      >
         Sign up
       </a>
-      <a href="#" class="login-link flex-centered">
+      <a
+        href="#"
+        class="login-link flex-centered"
+      >
         Log in
       </a>
     </div>
   </nav>
 </template>
 <script setup>
+import { ref } from 'vue'
 const search = ref('')
 const isSearchInputFocused = ref(false)
 
@@ -92,8 +105,10 @@ const onSubmit = (e) => {
   width: 100%
   background: black
   height: 64px
+
   .branding
     width: 230.93px
+
     a
       display: block
       border-radius: 50%
@@ -112,8 +127,10 @@ const onSubmit = (e) => {
     display: flex
     justify-content: center
     align-items: center
+
   form
     position: relative
+
     .search-icon, .reset-btn, button[type="submit"]
       position: absolute
       top: 50%
@@ -125,6 +142,7 @@ const onSubmit = (e) => {
 
     .search-icon
       left: 14px
+
     .reset-btn, button[type="submit"]
       cursor: pointer
       right: 14px
@@ -135,7 +153,7 @@ const onSubmit = (e) => {
       border-radius: 0
 
     input[type="search"]
-      border: none
+      border: 1px solid transparent
       padding: 12px 48px
       height: 100%
       border-radius: 500px
@@ -143,19 +161,29 @@ const onSubmit = (e) => {
 
       width: 475px
 
+      &:hover
+        background-color: rgba(255, 255, 255, 0.2)
+        border-color: #646464
+
       &:focus
         outline: none
+        border-color: white
+
+      transition: border-color 0.3s ease-in-out
+
   .auth-links
     height: 100%
     display: flex
     align-items: center
     gap: 1rem
+
     a
       height: 100%
       color: white
       text-decoration: none
       padding-inline: 1.8rem
       font-weight: 600
+
     .login-link
       background: white
       color: black

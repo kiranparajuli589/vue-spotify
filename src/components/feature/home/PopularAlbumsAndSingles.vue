@@ -2,7 +2,6 @@
   <GridSection
     class-name="popular-albums-and-singles"
     title="Popular Albums & Singles"
-
   >
     <template #articles>
       <article
@@ -14,12 +13,12 @@
             :src="getRandomLoremFlickerImage()"
             alt="artist"
             class="main"
-          />
+          >
           <PlayBtn />
         </div>
         <div class="px-2 pb-2">
           <h3 class="text-capitalize">
-            {{faker.lorem.words(2)}}
+            {{ faker.lorem.words(2) }}
           </h3>
           <p>Artist</p>
         </div>

@@ -42,9 +42,11 @@
             height="24"
             width="24"
           />
-          <template v-if="!appStore.appNav.isCollapsed">
-            Your Library
-          </template>
+          <VFadeTransition>
+            <template v-if="!appStore.appNav.isCollapsed">
+              Your Library
+            </template>
+          </VFadeTransition>
         </button>
         <button class="icon-btn flex-centered">
           <v-tooltip
@@ -65,41 +67,39 @@
         <NavCard
           title="Create your first playlist"
           subtitle="It's easy we will help you"
-          buttonText="Create playlist"
+          button-text="Create playlist"
         />
 
         <NavCard
           title="Let's find some podcasts to follow"
           subtitle="We will keep you updated on new episodes"
-          buttonText="Browse podcasts"
+          button-text="Browse podcasts"
         />
       </div>
 
-      <div class="nav-links ml-4" v-if="!appStore.appNav.isCollapsed">
-        <ul>
-          <li
-            v-for="menu in menus"
-            :key="menu.label"
-          >
-            <a :href="menu.href">{{ menu.label }}</a>
-          </li>
-        </ul>
+      <VFadeTransition>
+        <div
+          v-if="!appStore.appNav.isCollapsed"
+          class="nav-links ml-4"
+        >
+          <ul>
+            <li
+              v-for="menu in AppNavMenu"
+              :key="menu.label"
+            >
+              <a :href="menu.href">{{ menu.label }}</a>
+            </li>
+          </ul>
 
-        <a href="#" class="cookies-link">Cookies</a>
-      </div>
+          <a
+            href="#"
+            class="cookies-link"
+          >Cookies</a>
+        </div>
+      </VFadeTransition>
 
       <div class="my-4 ml-4">
-        <button class="outline-btn">
-          <img
-            src="@/assets/icons/svgs/language.svg"
-            height="24"
-            width="24"
-            alt="Language"
-          >
-          <template v-if="!appStore.appNav.isCollapsed">
-            English
-          </template>
-        </button>
+        <ChooseALanguageModal />
       </div>
     </nav>
     <div
@@ -116,6 +116,8 @@
 import { ref, computed, watch } from "vue";
 import NavCard from "@/components/core/layout/NavCard.vue";
 import {useAppStore} from "@/stores/app.js";
+import ChooseALanguageModal from "@/components/core/layout/ChooseALanguageModal.vue";
+import AppNavMenu from "@/constants/appNavMenu.js";
 
 const maxWidth = 500;
 const minWidth = 250;
@@ -124,33 +126,6 @@ const width = ref(420)
 const appStore = useAppStore()
 
 const isValidWidth = computed(() => width.value >= minWidth && width.value <= maxWidth);
-
-const menus = [
-  {
-    label: "Legal",
-    href: "#"
-  },
-  {
-    label: "Safety & Privacy Center",
-    href: "#"
-  },
-  {
-    label: "Privacy Policy",
-    href: "#"
-  },
-  {
-    label: "Cookies",
-    href: "#"
-  },
-  {
-    label: "About Ads",
-    href: "#"
-  },
-  {
-    label: "Accessibility",
-    href: "#"
-  },
-]
 
 const grabbing = ref(false);
 const handleMouseDown = (e) => {
@@ -216,12 +191,6 @@ watch(() => appStore.appNav.isCollapsed, (value) => {
         font-size: 11px
         &:hover
           text-decoration: none
-  .outline-btn
-    display: flex
-    gap: .5rem
-    padding: 4px 8px
-    font-size: 0.875rem
-    font-weight: 600
 
 .resizer
   height: 100%

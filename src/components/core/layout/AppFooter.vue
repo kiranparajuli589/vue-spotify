@@ -1,34 +1,54 @@
 <template>
   <footer class="app_footer">
     <div class="top-row">
-      <section v-for="menu in menus" :key="menu.title">
+      <section
+        v-for="menu in FooterMenu"
+        :key="menu.title"
+      >
         <header>
-          <a :href="menu.href">{{menu.title}}</a>
+          <a :href="menu.href">{{ menu.title }}</a>
         </header>
         <ul v-if="menu.children">
-          <li v-for="child in menu.children" :key="child.title">
-            <a :href="child.href">{{child.title}}</a>
+          <li
+            v-for="child in menu.children"
+            :key="child.title"
+          >
+            <a :href="child.href">{{ child.title }}</a>
           </li>
         </ul>
       </section>
       <div class="social_media">
         <a href="#">
-          <img src="@/assets/icons/pngs/facebook.png" alt="facebook" />
+          <img
+            src="@/assets/icons/pngs/facebook.png"
+            alt="facebook"
+          >
         </a>
         <a href="#">
-          <img src="@/assets/icons/pngs/instagram.png" alt="instagram" />
+          <img
+            src="@/assets/icons/pngs/instagram.png"
+            alt="instagram"
+          >
         </a>
         <a href="#">
-          <img src="@/assets/icons/pngs/twitter.png" alt="twitter" />
+          <img
+            src="@/assets/icons/pngs/twitter.png"
+            alt="twitter"
+          >
         </a>
       </div>
     </div>
     <hr>
     <div class="copyright">
-      © {{currentYear}} Spotify AB
+      © {{ currentYear }} Spotify AB
     </div>
   </footer>
 </template>
+<script setup>
+import { computed } from "vue"
+import FooterMenu from "@/constants/footerMenu.js";
+const currentYear = computed(() => new Date().getFullYear())
+</script>
 <style lang="sass">
 .app_footer
   padding-inline: 1rem
@@ -83,96 +103,3 @@
     color: rgb(179, 179, 179)
     font-size: 14px
 </style>
-<script setup>
-const currentYear = computed(() => new Date().getFullYear())
-const menus = [
-  {
-    title: "Company",
-    href: "#",
-    children: [
-      {
-        title: "About",
-        href: "#"
-      },
-      {
-        title: "Jobs",
-        href: "#"
-      },
-      {
-        title: "For the Record",
-        href: "#"
-      },
-      {
-        title: "Communities",
-        href: "#"
-      }
-    ]
-  },
-  {
-    title: "Communities",
-    href: "#",
-    children: [
-      {
-        title: "For Artists",
-        href: "#"
-      },
-      {
-        title: "Developers",
-        href: "#"
-      },
-      {
-        title: "Advertising",
-        href: "#"
-      },
-      {
-        title: "Investors",
-        href: "#"
-      },
-      {
-        title: "Vendors",
-        href: "#"
-      }
-    ]
-  },
-  {
-    title: "Useful links",
-    href: "#",
-    children: [
-      {
-        title: "Support",
-        href: "#"
-      },
-      {
-        title: "Free Mobile App",
-        href: "#"
-      },
-    ]
-  },
-  {
-    title: "Spotify Plans",
-    href: "#",
-    children: [
-      {
-        title: "Premium Individual",
-        href: "#"
-      },
-      {
-        title: "Premium Duo",
-        href: "#"
-      },
-      {
-        title: "Premium Family",
-        href: "#"
-      },
-      {
-        title: "Premium Student",
-        href: "#"
-      },
-      {
-        title: "Spotify Free",
-        href: "#"
-      }
-    ]
-  }
-]
-</script>

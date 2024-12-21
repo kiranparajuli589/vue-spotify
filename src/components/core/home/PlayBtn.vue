@@ -3,7 +3,7 @@
     <img
       src="@/assets/icons/svgs/play.svg"
       alt="play"
-    />
+    >
   </button>
 </template>
 <style lang="scss" scoped>
