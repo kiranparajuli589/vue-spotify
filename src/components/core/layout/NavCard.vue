@@ -1,18 +1,30 @@
 <template>
-  <div class="nav-card">
-    <template v-if="!appStore.appNav.isCollapsed">
-      <h2>{{ title }}</h2>
-      <p>{{ subtitle }}</p>
+  <v-menu
+    :model-value="showTooltip"
+    :close-on-content-click="false"
+    location="right"
+  >
+    <template #activator="{ props }">
+      <div
+        class="nav-card"
+        v-bind="props"
+      >
+        <template v-if="!appStore.appNav.isCollapsed">
+          <h2>{{ title }}</h2>
+          <p>{{ subtitle }}</p>
+        </template>
+        <button
+          :class="{
+            'filled-btn': !appStore.appNav.isCollapsed,
+            'icon-btn': appStore.appNav.isCollapsed
+          }"
+        >
+          {{ btnText }}
+        </button>
+      </div>
     </template>
-    <button
-      :class="{
-        'filled-btn': !appStore.appNav.isCollapsed,
-        'icon-btn': appStore.appNav.isCollapsed
-      }"
-    >
-      {{ btnText }}
-    </button>
-  </div>
+    <slot name="tooltip" />
+  </v-menu>
 </template>
 <script setup>
 import { computed } from "vue";
@@ -30,6 +42,10 @@ const props = defineProps({
   buttonText: {
     type: String,
     required: true,
+  },
+  showTooltip: {
+    type: Boolean,
+    default: false,
   },
 })
 const appStore = useAppStore()

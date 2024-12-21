@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Poppins", serif;
+}
+
+body {
+  background: black;
+}
+
 .flex-centered {
     display: flex;
     justify-content: center;

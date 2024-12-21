@@ -74,8 +74,17 @@
             <VList>
               <VListItem
                 title="Create New Playlist"
-                append-icon="chevron_right"
-              />
+                @click="setShowTooltip('playlist', true)"
+              >
+                <template #prepend>
+                  <VImg
+                    src="@/assets/icons/svgs/lyrics.svg"
+                    height="24"
+                    width="24"
+                    class="mr-2"
+                  />
+                </template>
+              </VListItem>
             </VList>
           </VCard>
         </v-menu>
@@ -83,15 +92,40 @@
 
       <div class="d-flex flex-column ga-2 flex-grow-1 pt-12">
         <NavCard
+          :show-tooltip="showTooltip.playlist"
           title="Create your first playlist"
           subtitle="It's easy we will help you"
           button-text="Create playlist"
-        />
+        >
+          <template #tooltip>
+            <VCard
+              color="light-blue-lighten-2"
+              class="pa-4"
+            >
+              <h4>Create a playlist</h4>
+              <p class="mb-4 text-grey-darken-4">
+                Playlists are a great way to organize your favorite songs
+              </p>
+              <div class="d-flex justify-end ga-4">
+                <button
+                  class="font-medium"
+                  @click="setShowTooltip('playlist', false)"
+                >
+                  Not Now
+                </button>
+                <button class="filled-btn px-3 py-1 font-medium">
+                  Log in
+                </button>
+              </div>
+            </VCard>
+          </template>
+        </NavCard>
 
         <NavCard
           title="Let's find some podcasts to follow"
           subtitle="We will keep you updated on new episodes"
           button-text="Browse podcasts"
+          :show-tooltip="showTooltip.podcast"
         />
       </div>
 
@@ -182,6 +216,16 @@ watch(() => appStore.appNav.isCollapsed, (value) => {
     width.value = widthToRemember || 420;
   }
 })
+
+
+const showTooltip = {
+  playlist: ref(false),
+  podcast: ref(false)
+}
+
+const setShowTooltip = (key, value) => {
+  showTooltip[key].value = value;
+}
 
 </script>
 <style lang="sass" scoped>
