@@ -4,7 +4,11 @@
     :title="title"
   >
     <template #articles>
-      <RadioCard v-for="i in size" :key="i" />
+      <RadioCard
+        v-for="i in size"
+        :key="i"
+        :menu-items="menuItems"
+      />
     </template>
   </GridSection>
 </template>
@@ -17,7 +21,11 @@ defineProps({
   title: {
     type: String,
     default: 'Popular Radio'
-  }
+  },
+  menuItems: {
+    type: Array,
+    default: () => [],
+  },
 })
 
 const {size} = useHomeSectionReactiveGridSize()

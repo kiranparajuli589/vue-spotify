@@ -17,7 +17,10 @@ import ArtistCard from "@/components/core/ArtistCard.vue";
 const {size} = useHomeSectionReactiveGridSize()
 </script>
 <style lang="scss">
-section.popular-artists {
+.popular-artists {
+  img {
+    border-radius: 50% !important;
+  }
   .gradient {
     height: 256px;
     position: absolute;

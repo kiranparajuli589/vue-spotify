@@ -48,19 +48,37 @@
             </template>
           </VFadeTransition>
         </button>
-        <button class="icon-btn flex-centered">
-          <v-tooltip
-            activator="parent"
-            location="top"
-          >
-            Create playlist or folder
-          </v-tooltip>
-          <VImg
-            src="@/assets/icons/svgs/plus.svg"
-            height="24"
-            width="24"
-          />
-        </button>
+        <v-menu
+
+        >
+          <template #activator="{props}">
+            <button
+              class="icon-btn flex-centered"
+              v-bind="props"
+            >
+              <v-tooltip
+                activator="parent"
+                location="top"
+              >
+                Create playlist or folder
+              </v-tooltip>
+              <VImg
+                src="@/assets/icons/svgs/plus.svg"
+                height="24"
+                width="24"
+              />
+            </button>
+          </template>
+
+          <VCard>
+            <VList>
+              <VListItem
+                title="Create New Playlist"
+                append-icon="chevron_right"
+              />
+            </VList>
+          </VCard>
+        </v-menu>
       </header>
 
       <div class="d-flex flex-column ga-2 flex-grow-1 pt-12">
