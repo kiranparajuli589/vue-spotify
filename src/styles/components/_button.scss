@@ -1,0 +1,41 @@
+button, a {
+  border-radius: 500px;
+
+  &:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+
+  @extend .ease-transition;
+}
+
+button.focus-visible, a.focus-visible {
+  border: 1px solid transparent;
+  outline: transparent solid 1px;
+  &:focus, &:focus-visible, &:focus-within {
+    border-color: rgba(255, 255, 255, 1);
+    outline-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.hover-underline {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  @extend .hover-underline;
+}
+
+.outline-btn {
+  border: 1px solid white !important;
+  color: white !important;
+}
+
+.filled-btn {
+    background: white !important;
+    color: black !important;
+}

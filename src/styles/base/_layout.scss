@@ -1,0 +1,50 @@
+.v-application {
+  background: transparent;
+}
+.layout-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding-inline: 8px;
+  .app_bar {
+    grid-column: 1 / -1;
+  }
+  .app_nav, .app_main {
+    height: calc(100vh - 64px - 12px);
+    background: rgb(18 18 18);
+    border-radius: 8px;
+  }
+  .app_main {
+    overflow-y: auto;
+    margin-left: 8px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      overflow: hidden;
+    }
+  }
+  .app_nav {
+    padding: 8px;
+    width: 420px;
+
+    .icon-btn {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 4px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+
+      }
+    }
+  }
+}
