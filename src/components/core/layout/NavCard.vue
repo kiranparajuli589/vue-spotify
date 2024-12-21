@@ -1,17 +1,46 @@
 <template>
   <div class="nav-card">
-    <h2>{{ title }}</h2>
-    <p>{{ subtitle }}</p>
-    <button class="filled-btn">
-      {{ buttonText }}
+    <template v-if="!appStore.appNav.isCollapsed">
+      <h2>{{ title }}</h2>
+      <p>{{ subtitle }}</p>
+    </template>
+    <button
+      :class="{
+        'filled-btn': !appStore.appNav.isCollapsed,
+        'icon-btn': appStore.appNav.isCollapsed
+      }"
+    >
+      {{ btnText }}
     </button>
   </div>
 </template>
 <script setup>
-defineProps({
-  title: String,
-  subtitle: String,
-  buttonText: String,
+import { computed } from "vue";
+import {useAppStore} from "@/stores/app.js";
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  subtitle: {
+    type: String,
+    required: true,
+  },
+  buttonText: {
+    type: String,
+    required: true,
+  },
+})
+const appStore = useAppStore()
+
+const btnText = computed(() => {
+  return appStore.appNav.isCollapsed
+    ? props.buttonText
+      .split(' ')
+      .map(word => word[0].toUpperCase())
+      .join('')
+    : props.buttonText;
 })
 </script>
 <style scoped lang="scss">
@@ -36,6 +65,14 @@ defineProps({
     font-size: 0.875rem;
     &:hover {
       transform: scale(1.1);
+    }
+    &:active {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    &.icon-btn {
+      font-size: 1.2rem
     }
   }
 }

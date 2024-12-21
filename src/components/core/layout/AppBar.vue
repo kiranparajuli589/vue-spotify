@@ -3,7 +3,7 @@
     <div class="branding">
       <a href="/" title="Home">
         <img
-          src="@/assets/logo.png"
+          src="/logo.png"
           height="42"
           width="42"
           alt="Spotify"

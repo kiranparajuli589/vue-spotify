@@ -1,28 +1,52 @@
 <template>
   <div class="d-flex">
-    <nav class="app_nav flex-grow-1"
+    <nav
+      :class="{
+        'app_nav flex-grow-1': true,
+        'is-collapsed': appStore.appNav.isCollapsed
+      }"
       :style="{
         width: width + 'px'
       }"
     >
-      <header class="d-flex justify-space-between ga-2 pa-2">
+      <header
+        :class="{
+          'd-flex justify-space-between ga-2 pa-2': true,
+          'flex-column': appStore.appNav.isCollapsed
+        }"
+      >
         <button
           class="flex-centered ga-2 menu-btn"
+          @click="appStore.toggleAppNav"
         >
           <v-tooltip
             activator="parent"
             location="top"
           >
-            Collapse Your Library
+            <template v-if="appStore.appNav.isCollapsed">
+              Expand Your Library
+            </template>
+            <template v-else>
+              Collapse Your Library
+            </template>
           </v-tooltip>
           <VImg
+            v-if="appStore.appNav.isCollapsed"
+            src="@/assets/icons/svgs/book_closed.svg"
+            height="24"
+            width="24"
+          />
+          <VImg
+            v-else
             src="@/assets/icons/svgs/book.svg"
             height="24"
             width="24"
           />
-          Your Library
+          <template v-if="!appStore.appNav.isCollapsed">
+            Your Library
+          </template>
         </button>
-        <button class="icon-btn">
+        <button class="icon-btn flex-centered">
           <v-tooltip
             activator="parent"
             location="top"
@@ -51,8 +75,8 @@
         />
       </div>
 
-      <div class="nav-links ml-4">
-        <ul class="ga-2">
+      <div class="nav-links ml-4" v-if="!appStore.appNav.isCollapsed">
+        <ul>
           <li
             v-for="menu in menus"
             :key="menu.label"
@@ -61,10 +85,10 @@
           </li>
         </ul>
 
-        <a href="#" class="mb-6">Cookies</a>
+        <a href="#" class="cookies-link">Cookies</a>
       </div>
 
-      <div class="mb-4 ml-4">
+      <div class="my-4 ml-4">
         <button class="outline-btn">
           <img
             src="@/assets/icons/svgs/language.svg"
@@ -72,7 +96,9 @@
             width="24"
             alt="Language"
           >
-          English
+          <template v-if="!appStore.appNav.isCollapsed">
+            English
+          </template>
         </button>
       </div>
     </nav>
@@ -87,12 +113,15 @@
   </div>
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import NavCard from "@/components/core/layout/NavCard.vue";
+import {useAppStore} from "@/stores/app.js";
 
 const maxWidth = 500;
 const minWidth = 250;
 const width = ref(420)
+
+const appStore = useAppStore()
 
 const isValidWidth = computed(() => width.value >= minWidth && width.value <= maxWidth);
 
@@ -151,22 +180,37 @@ watch(grabbing, (value) => {
   }
 })
 
+let widthToRemember;
+watch(() => appStore.appNav.isCollapsed, (value) => {
+  if (value) {
+    widthToRemember = width.value;
+    width.value = 80;
+  } else {
+    width.value = widthToRemember || 420;
+  }
+})
+
 </script>
 <style lang="sass" scoped>
 .app_nav
   display: flex
   flex-direction: column
+  transition: width 0.3s
   .menu-btn
     padding: 4px 8px
     font-weight: 600
     color: #b3b3b3
   .nav-links
-    a
-      font-size: 0.875rem
+    display: flex
+    flex-direction: column
+    gap: .5rem
+    margin-bottom: 1rem
+    .cookies-link
+      font-size: 0.75rem
     ul
       display: flex
-      gap: .5rem
       flex-wrap: wrap
+      gap: .3rem
       li a
         color: rgb(179, 179, 179)
         font-size: 11px
