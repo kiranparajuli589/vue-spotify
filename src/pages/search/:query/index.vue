@@ -69,7 +69,7 @@
       title="Featuring"
       :no-show-all="true"
       class-name="featuring"
-      :card-size="2"
+      :size="2"
     />
 
     <PopularArtists

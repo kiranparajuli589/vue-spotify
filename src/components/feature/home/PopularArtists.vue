@@ -16,13 +16,9 @@
   </GridSection>
 </template>
 <script setup>
-import {computed, defineProps} from "vue";
 import GridSection from "@/components/core/home/GridSection.vue";
 import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactiveGridSize.js";
 import ArtistCard from "@/components/core/ArtistCard.vue";
-
-const {size: gridSize} = useHomeSectionReactiveGridSize()
-const computedSize = computed(() => props.size ?? gridSize)
 
 const props = defineProps({
   title: {
@@ -54,6 +50,8 @@ const props = defineProps({
     default: true
   }
 })
+
+const computedSize = useHomeSectionReactiveGridSize({ size: props?.size })
 </script>
 <style lang="scss">
 .popular-artists {

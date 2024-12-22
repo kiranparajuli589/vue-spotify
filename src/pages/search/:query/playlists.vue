@@ -1,7 +1,7 @@
 <template>
   <PopularAlbumsAndSingles
     :no-header="true"
-    :card-size="50"
+    :size="50"
   />
 </template>
 <script setup>

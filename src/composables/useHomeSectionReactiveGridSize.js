@@ -1,12 +1,13 @@
-import { computed } from 'vue';
+import {computed} from 'vue';
 import useResponsive from "@/composables/useResponsive.js";
 
-const useHomeSectionReactiveGridSize = () => {
+const useHomeSectionReactiveGridSize = ({ size } = {}) => {
   const {
     screenWidth,
   } = useResponsive()
 
-  const size = computed(() => {
+  return computed(() => {
+    if (size) return size
     if (screenWidth.value >= 1280) {
       return 6
     }
@@ -19,15 +20,11 @@ const useHomeSectionReactiveGridSize = () => {
     if (screenWidth.value >= 768 && screenWidth.value < 950) {
       return 3
     }
-    if (screenWidth.value >= 480 && screenWidth.value < 768) {
+    if (screenWidth.value >= 250 && screenWidth.value < 768) {
       return 2
     }
     return 1
   })
-
-  return {
-    size,
-  }
 }
 
 export default useHomeSectionReactiveGridSize;

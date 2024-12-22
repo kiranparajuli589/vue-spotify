@@ -1,5 +1,7 @@
 button, a {
   border-radius: 500px;
+  white-space: nowrap;
+  user-select: none;
 
   &:active {
     transform: scale(0.95);

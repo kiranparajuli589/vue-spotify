@@ -1,5 +1,11 @@
 <template>
   <section>
+    <div
+      v-if="!mdAndUp"
+      class="mt-6 px-4"
+    >
+      <SearchForm />
+    </div>
     <header>
       <h1>
         Browse all
@@ -25,6 +31,10 @@
 </template>
 <script setup>
 import {getRandomLoremFlickerImage} from "@/helpers/util.js";
+import useResponsive from "@/composables/useResponsive.js";
+import SearchForm from "@/components/core/layout/SearchForm.vue";
+
+const {mdAndUp} = useResponsive()
 
 const genres = [
   {title: "Music", color: "rgb(220, 20, 140)"},

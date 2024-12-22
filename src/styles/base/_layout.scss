@@ -9,9 +9,14 @@
     grid-column: 1 / -1;
   }
   .app_nav, .app_main {
-    height: calc(100vh - 64px - 12px);
     background: rgb(18 18 18);
     border-radius: 8px;
+
+    height: calc(100vh - 64px - 12px);
+
+    @media only screen and (max-width: 768px) {
+      margin-top: .5rem;
+    }
   }
   .app_main {
     overflow-y: auto;

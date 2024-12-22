@@ -56,6 +56,31 @@ const currentYear = computed(() => new Date().getFullYear())
   .top-row
     display: grid
     grid-template-columns: repeat(9, 1fr)
+
+    @media only screen and (max-width: 480px)
+      grid-template-columns: 1fr
+      gap: 2rem
+      section
+        grid-column: span 1
+
+    @media only screen and (min-width: 481px) and (max-width: 768px)
+      grid-template-columns: 1fr 1fr
+      gap: 1.5rem
+      section
+        grid-column: span 1
+
+    @media only screen and (min-width: 769px) and (max-width: 1024px)
+      grid-template-columns: 1fr 1fr
+      gap: 2rem
+      section
+        grid-column: span 1
+
+    @media only screen and (min-width: 1025px) and (max-width: 1366px)
+      grid-template-columns: 1fr 1fr 1fr
+      gap: 2rem
+      section
+        grid-column: span 1
+
   header
     margin-bottom: .5rem
     a

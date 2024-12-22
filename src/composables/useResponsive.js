@@ -14,6 +14,7 @@ const useResponsive = () => {
   const lg = computed(() => screenWidth.value >= 768 && screenWidth.value < 1024);
   const xl = computed(() => screenWidth.value >= 1024 && screenWidth.value < 1200);
   const xxl = computed(() => screenWidth.value >= 1280);
+  const mdAndUp = computed(() => screenWidth.value >= 768);
 
   return {
     screenWidth,
@@ -21,7 +22,8 @@ const useResponsive = () => {
     md,
     lg,
     xl,
-    xxl
+    xxl,
+    mdAndUp,
   }
 }
 

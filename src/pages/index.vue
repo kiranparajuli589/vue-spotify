@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column ga-4">
+  <div class="home-page">
     <PopularArtists />
     <PopularAlbumsAndSingles />
     <PopularRadio
@@ -22,3 +22,13 @@ import PopularAlbumsAndSingles from "@/components/feature/home/PopularAlbumsAndS
 import PopularRadio from "@/components/feature/home/PopularRadio.vue";
 import {PopularRadioContextMenu} from "@/constants/contextMenuItems.js";
 </script>
+<style lang="scss">
+.home-page {
+  @media only screen and (max-width: 768px) {
+    //.articles {
+    //  display: flex;
+    //  overflow-x: auto;
+    //}
+  }
+}
+</style>
