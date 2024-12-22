@@ -39,7 +39,6 @@ router.afterEach((to) => {
 
 const handleTab = (name) => {
   const nameSplit = name.split("/")
-  console.log(nameSplit[nameSplit.length - 1])
   tab.value = nameSplit[nameSplit.length - 1]
 }
 

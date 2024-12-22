@@ -64,7 +64,6 @@ const isSearchPage = computed(() => /^\/search\/?$/.test(router.currentRoute.val
 
 const onSubmit = (e) => {
   e.preventDefault()
-  console.log('Search:', search.value)
   router.push(`/search/${search.value}`)
 }
 

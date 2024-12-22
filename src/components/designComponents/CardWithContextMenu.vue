@@ -1,22 +1,24 @@
 <template>
   <article
-    :ref="article"
+    ref="articleCard"
+    :class="uniqueArticleClass"
     @contextmenu.prevent="openMenu"
     @click="menu = false"
   >
     <slot name="default" />
 
     <v-menu
+      ref="menuRef"
       v-model="menu"
-      :style="{
-        top: `${menuPosition.y}px`,
-        left: `${menuPosition.x}px`
+      :style="menuPositionStyle()"
+      :class="{
+        'custom-menu elevation-8': true,
+        'custom-menu--right': menuRightEdge,
+        [uniqueMenuClass]: true,
       }"
-      class="custom-menu elevation-8"
+      close-on-back
     >
-      <VCard
-        id="artist-menu"
-      >
+      <VCard>
         <VList>
           <VListItem
             v-for="item in menuItems"
@@ -90,8 +92,8 @@
   </article>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
-const article=ref(null);
+import {ref, onMounted, useTemplateRef, onBeforeUnmount} from "vue";
+const articleCard = useTemplateRef("articleCard");
 
 defineProps({
   menuItems: {
@@ -101,7 +103,32 @@ defineProps({
 })
 
 const menu = ref(false);
+const menuRef = useTemplateRef("menuRef");
 const menuPosition = ref({ x: 0, y: 0 });
+const menuRightEdge = ref(false);
+const uniqueMenuClass = `menu-${Math.random().toString(36).substring(7)}`;
+const uniqueArticleClass = `article-${Math.random().toString(36).substring(7)}`;
+
+const menuPositionStyle = () => {
+  if (articleCard.value) {
+    const rect = articleCard.value?.getBoundingClientRect();
+    const rightEdge = rect.right + 200;
+    const windowWidth = window.innerWidth;
+    if (rightEdge > windowWidth) {
+      menuRightEdge.value = true;
+      return {
+        top: `${menuPosition.value.y}px`,
+        right: `${windowWidth - menuPosition.value.x}px`,
+      };
+    }
+  }
+  menuRightEdge.value = false;
+
+  return {
+    top: `${menuPosition.value.y}px`,
+    left: `${menuPosition.value.x}px`,
+  };
+};
 
 const openMenu = (event) => {
   menu.value = true;
@@ -119,6 +146,8 @@ const handleClick = (e, item) => {
 
 onMounted(() => {
   const appMain = document.querySelector(".app_main");
+  document.addEventListener("click", handleOutsideClick);
+  document.addEventListener("contextmenu", handleOutsideRightClick);
   appMain.addEventListener("scroll", () => {
     menu.value = false;
   });
@@ -126,15 +155,33 @@ onMounted(() => {
     menu.value = false;
   });
 });
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleOutsideClick);
+  document.removeEventListener("contextmenu", handleOutsideRightClick);
+});
+const handleOutsideClick = (event) => {
+  const menuEl = menuRef.value?.$el || menuRef.value;
+  if (menuEl && !menuEl.contains(event.target)) {
+    menu.value = false;
+  }
+};
+const handleOutsideRightClick = (event) => {
+  if (menu.value) {
+    if (!event.target.closest(`.${uniqueArticleClass}`)) {
+      menu.value = false;
+    }
+  }
+};
 
 </script>
 <style lang="scss" scoped>
 article {
   position: relative;
-
+  user-select: none;
   img.main {
     aspect-ratio: 1;
     margin-bottom: .5rem;
+    user-select: none;
   }
 
   h3 {
@@ -148,10 +195,16 @@ article {
     text-align: start;
   }
 }
-
+</style>
+<style lang="scss">
 .custom-menu {
   position: absolute;
   z-index: 1000;
+  &--right {
+    .v-overlay__content {
+      right: 0;
+    }
+  }
 }
 
 .submenu {

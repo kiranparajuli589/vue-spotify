@@ -4,6 +4,7 @@
       'home-section': true,
       [className]: true
     }"
+    @contextmenu.prevent="() => {}"
   >
     <header v-if="!noHeader">
       <h3>
