@@ -61,7 +61,7 @@ const btnText = computed(() => {
 </script>
 <style scoped lang="scss">
 .nav-card {
-  background-color: #1f1f1f;
+  background-color: rgb(var(--v-theme-surface-variant));
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -73,6 +73,7 @@ const btnText = computed(() => {
   p {
     font-size: 0.875rem;
     margin-bottom: 1rem;
+    color: rgb(var(--v-theme-secondary));
   }
 
   button {

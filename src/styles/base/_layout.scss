@@ -9,7 +9,7 @@
     grid-column: 1 / -1;
   }
   .app_nav, .app_main {
-    background: rgb(18 18 18);
+    background: rgb(var(--v-theme-primary-lighten-1));
     border-radius: 8px;
 
     height: calc(100vh - 64px - 12px);
@@ -47,7 +47,6 @@
 
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-
       }
     }
   }

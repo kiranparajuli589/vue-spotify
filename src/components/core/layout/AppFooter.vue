@@ -85,7 +85,7 @@ footer.app_footer
         a
           font-size: 16px
           font-weight: 400
-          color: rgb(179, 179, 179)
+          color: rgb(var(--v-theme-secondary))
           &:hover
             color: white
 
@@ -111,6 +111,6 @@ footer.app_footer
     height: 1px
     margin-block: 1rem
   .copyright
-      color: rgb(179, 179, 179)
+      color: rgb(var(--v-theme-secondary))
       font-size: 14px
 </style>

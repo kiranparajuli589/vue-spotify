@@ -1,19 +1,13 @@
 const Theme = {
   colors: {
-    primary: "#0e0e0e",
-    "primary-darken-1": "#000000",
+    primary: "#000000",
+    "primary-lighten-1": "#121212FF",
+    "primary-text": "#ffffff",
 
-    'surface-variant': '#2b2b2b',
-    'on-surface-variant': '#ffffff',
+    'surface-variant': '#1f1f1f',
+    'on-surface-variant': '#e2e2e2',
 
-    secondary: "#121212",
-    "secondary-darken-1": "#131313",
-    "secondary-light": "#1f1f1f",
-    "white-1": "#b3b3b3",
-    "success": "#1db954",
-    "error": "#ff0000",
-    "warning": "#ffcc00",
-    "info": "#2fbdac",
+    'secondary': "rgb(179, 179, 179)",
   }
 }
 

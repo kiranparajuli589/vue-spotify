@@ -16,7 +16,7 @@
         }"
       >
         <button
-          class="flex-centered ga-2 menu-btn"
+          class="flex-centered ga-2 menu-btn text-secondary"
           @click="appStore.toggleAppNav"
         >
           <v-tooltip
@@ -236,7 +236,6 @@ const setShowTooltip = (key, value) => {
   .menu-btn
     padding: 4px 8px
     font-weight: 600
-    color: #b3b3b3
   .nav-links
     display: flex
     flex-direction: column
@@ -249,7 +248,7 @@ const setShowTooltip = (key, value) => {
       flex-wrap: wrap
       gap: .3rem
       li a
-        color: rgb(179, 179, 179)
+        color: rgb(var(--v-theme-secondary))
         font-size: 11px
         &:hover
           text-decoration: none

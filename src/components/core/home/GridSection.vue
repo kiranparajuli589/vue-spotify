@@ -11,7 +11,9 @@
         <a
           href="#"
           class="title"
-        >{{ title }}</a>
+        >
+          {{ title }}
+        </a>
       </h3>
       <a
         v-if="!noShowAll"
@@ -55,6 +57,10 @@ defineProps({
   position: relative;
   padding: .5rem .4rem;
   border-radius: 14px;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   header {
     z-index: 2;
@@ -71,7 +77,9 @@ defineProps({
 
         font-size: 24px;
         text-decoration: none;
-
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 
@@ -126,7 +134,7 @@ defineProps({
         font-weight: 400;
       }
       p {
-        color: white;
+        color: rgb(var(--v-theme-secondary));;
         font-size: 14px;
         text-align: start;
       }
