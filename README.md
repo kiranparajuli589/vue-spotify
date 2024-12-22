@@ -4,12 +4,12 @@
 
 Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
 
-| Package Manager                                                | Command        |
-|---------------------------------------------------------------|----------------|
-| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
-| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
-| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
-| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
+| Package Manager                                           | Command        |
+|-----------------------------------------------------------|----------------|
+| [yarn](https://yarnpkg.com/getting-started)               | `yarn install` |
+| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install) | `npm install`  |
+| [pnpm](https://pnpm.io/installation)                      | `pnpm install` |
+| [bun](https://bun.sh/#getting-started)                    | `bun install`  |
 
 After completing the installation, your environment is ready for Vuetify development.
 
@@ -20,6 +20,7 @@ After completing the installation, your environment is ready for Vuetify develop
 4. Nested routing & layout-ing using Vue latest pages routing technology
 5. Adjustable App Nav width
 6. Mobile Responsive
+7. Albums Page with intelligent color grabbing from album banner
 
 ## What's Improved From the actual spotify
 Open Spotify is a beautiful web apps. Most of the things in the platforms were amazing. But, there are some things that I've improved in this project.

@@ -1,7 +1,6 @@
 
 
 .grid {
-
   &__root {
     .truncate {
       text-overflow: ellipsis;
@@ -30,7 +29,6 @@
         background-position: -200% 0;
       }
     }
-
     .grow {
       flex-grow: 1;
     }
@@ -43,6 +41,12 @@
     font-size: .875rem;
     font-weight: 500;
     color: rgb(var(--v-theme-secondary));
+
+    &.scrolled {
+      background: rgba(23, 23, 23, 0.8);
+      backdrop-filter: blur(10px);
+      padding-top: 8px;
+    }
   }
   &__body {
     .grid__row {

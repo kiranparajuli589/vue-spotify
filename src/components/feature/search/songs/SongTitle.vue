@@ -1,19 +1,34 @@
 <template>
   <div class="song-title">
     <img
+      v-if="rowData.thumbnail"
       :src="rowData.thumbnail"
       alt="music"
     >
     <div>
-      <h4>{{rowData.title}}</h4>
-      <p>{{rowData.artist}}</p>
+      <h4 class="text-uppercase">
+        <a href="#">
+          {{ rowData.title }}
+        </a>
+      </h4>
+      <p v-if="!compact">{{ rowData.artist }}</p>
     </div>
   </div>
 </template>
 <script setup>
 defineProps({
-  rowData: Object,
-  rowIndex: Number
+  rowData: {
+    type: Object,
+    required: true
+  },
+  rowIndex: {
+    type: Number,
+    required: true
+  },
+  compact: {
+    type: Boolean,
+    default: false
+  }
 })
 </script>
 <style lang="sass" scoped>
@@ -32,4 +47,7 @@ defineProps({
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+  p
+    font-size: .875rem
+    color: rgb(var(--v-theme-secondary))
 </style>

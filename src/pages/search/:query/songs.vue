@@ -10,10 +10,10 @@
   </section>
 </template>
 <script setup>
-import {ref, onMounted} from "vue";
+import {ref, onMounted, onBeforeUnmount} from "vue";
 import {faker} from "@faker-js/faker";
 import DataGrid from "@/components/designComponents/DataGrid.vue";
-import SongsTableCols from "@/constants/songsTableCols.js";
+import {SongsTableCols} from "@/constants/songsTableCols.js";
 
 const data = ref([])
 const isLoading = ref(true)
@@ -39,7 +39,7 @@ const loadData = () => {
   isLoading.value = false
 }
 
-// watch for .app_main scroll event
+
 onMounted(() => {
   const appMain = document.querySelector(".app_main")
   const gridHeader = document.querySelector(".grid__header")
@@ -52,6 +52,10 @@ onMounted(() => {
   })
 })
 
+onBeforeUnmount(() => {
+  const appMain = document.querySelector(".app_main")
+  appMain.removeEventListener("scroll", () => {})
+})
 </script>
 <style lang="scss">
 
@@ -66,12 +70,6 @@ onMounted(() => {
     position: sticky;
     top: 64px;
     z-index: 2;
-
-    &.scrolled {
-      background: rgba(23, 23, 23, 0.8);
-      backdrop-filter: blur(10px);
-      padding-top: 8px;
-    }
   }
 }
 </style>

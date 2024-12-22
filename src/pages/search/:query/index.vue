@@ -34,7 +34,7 @@
             :key="i"
           >
             <img
-              src="@/assets/icons/svgs/arrow_right_white.svg"
+              src="../../../assets/icons/svgs/play_deep_white.svg"
               alt="Play Icon"
               class="play-icon"
             >

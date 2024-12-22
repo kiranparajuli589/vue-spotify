@@ -10,6 +10,8 @@ const Theme = {
     'on-surface': '#ffffff',
 
     'secondary': "rgb(179, 179, 179)",
+
+    'play': "#1ed760"
   }
 }
 

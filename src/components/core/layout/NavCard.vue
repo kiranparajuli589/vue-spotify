@@ -9,14 +9,14 @@
         class="nav-card"
         v-bind="props"
       >
-        <template v-if="!appStore.appNav.isCollapsed">
+        <template v-if="!appStore.isAppNavCollapsed">
           <h2>{{ title }}</h2>
           <p>{{ subtitle }}</p>
         </template>
         <button
           :class="{
-            'filled-btn': !appStore.appNav.isCollapsed,
-            'icon-btn': appStore.appNav.isCollapsed
+            'filled-btn': !appStore.isAppNavCollapsed,
+            'icon-btn': appStore.isAppNavCollapsed
           }"
         >
           {{ btnText }}
@@ -51,7 +51,7 @@ const props = defineProps({
 const appStore = useAppStore()
 
 const btnText = computed(() => {
-  return appStore.appNav.isCollapsed
+  return appStore.isAppNavCollapsed
     ? props.buttonText
       .split(' ')
       .map(word => word[0].toUpperCase())

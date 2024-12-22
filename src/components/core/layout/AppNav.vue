@@ -3,7 +3,7 @@
     <nav
       :class="{
         'app_nav flex-grow-1': true,
-        'is-collapsed': appStore.appNav.isCollapsed
+        'is-collapsed': appStore.isAppNavCollapsed
       }"
       :style="{
         width: width + 'px'
@@ -12,7 +12,7 @@
       <header
         :class="{
           'd-flex justify-space-between ga-2 pa-2': true,
-          'flex-column': appStore.appNav.isCollapsed
+          'flex-column': appStore.isAppNavCollapsed
         }"
       >
         <button
@@ -23,7 +23,7 @@
             activator="parent"
             location="top"
           >
-            <template v-if="appStore.appNav.isCollapsed">
+            <template v-if="appStore.isAppNavCollapsed">
               Expand Your Library
             </template>
             <template v-else>
@@ -31,7 +31,7 @@
             </template>
           </v-tooltip>
           <VImg
-            v-if="appStore.appNav.isCollapsed"
+            v-if="appStore.isAppNavCollapsed"
             src="@/assets/icons/svgs/book_closed.svg"
             height="24"
             width="24"
@@ -43,7 +43,7 @@
             width="24"
           />
           <VFadeTransition>
-            <template v-if="!appStore.appNav.isCollapsed">
+            <template v-if="!appStore.isAppNavCollapsed">
               Your Library
             </template>
           </VFadeTransition>
@@ -131,7 +131,7 @@
 
       <VFadeTransition>
         <div
-          v-if="!appStore.appNav.isCollapsed"
+          v-if="!appStore.isAppNavCollapsed"
           class="nav-links ml-4"
         >
           <ul>
@@ -208,7 +208,7 @@ watch(grabbing, (value) => {
 })
 
 let widthToRemember;
-watch(() => appStore.appNav.isCollapsed, (value) => {
+watch(() => appStore.isAppNavCollapsed, (value) => {
   if (value) {
     widthToRemember = width.value;
     width.value = 80;

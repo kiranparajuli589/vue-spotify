@@ -11,7 +11,7 @@
         alt="Language"
       >
       <VFadeTransition>
-        <template v-if="!appStore.appNav.isCollapsed">
+        <template v-if="!appStore.isAppNavCollapsed">
           English
         </template>
       </VFadeTransition>

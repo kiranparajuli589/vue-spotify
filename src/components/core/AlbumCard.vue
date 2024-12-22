@@ -1,6 +1,7 @@
 <template>
   <CardWithContextMenu
     :menu-items="AlbumCardContextMenu"
+    :to="`/album/${faker.word.sample({length: 12})}`"
   >
     <div class="position-relative">
       <img
@@ -24,11 +25,16 @@ import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import CardWithContextMenu from "@/components/designComponents/CardWithContextMenu.vue";
 import {AlbumCardContextMenu} from "@/constants/contextMenuItems.js";
 
-const album = {
-  image: faker.image.urlPicsumPhotos({width: 200, height: 200, blur: 0}),
-  title: faker.lorem.words(2),
-  subtitle: faker.lorem.words(2),
-}
+defineProps({
+  album: {
+    type: Object,
+    default: () => ({
+      image: faker.image.urlPicsumPhotos({width: 200, height: 200, blur: 0}),
+      title: faker.lorem.words(2),
+      subtitle: faker.lorem.words(2),
+    })
+  }
+})
 </script>
 <style scoped lang="sass">
 article

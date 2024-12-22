@@ -3,7 +3,12 @@
     ref="articleCard"
     :class="uniqueArticleClass"
     @contextmenu.prevent="openMenu"
-    @click="menu = false"
+    @click="() => {
+      if (to) {
+        router.push(to);
+      }
+      menu = false;
+    }"
   >
     <slot name="default" />
 
@@ -93,6 +98,7 @@
 </template>
 <script setup>
 import {ref, onMounted, useTemplateRef, onBeforeUnmount} from "vue";
+import {useRouter} from "vue-router";
 const articleCard = useTemplateRef("articleCard");
 
 defineProps({
@@ -100,8 +106,13 @@ defineProps({
     type: Array,
     default: () => [],
   },
+  to: {
+    type: [String, null],
+    default: null
+  }
 })
 
+const router = useRouter();
 const menu = ref(false);
 const menuRef = useTemplateRef("menuRef");
 const menuPosition = ref({ x: 0, y: 0 });
@@ -182,6 +193,7 @@ article {
     aspect-ratio: 1;
     margin-bottom: .5rem;
     user-select: none;
+    object-fit: cover;
   }
 
   h3 {

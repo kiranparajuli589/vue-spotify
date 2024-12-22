@@ -26,6 +26,10 @@ const props = defineProps({
   loadingRowCount: {
     type: Number,
     default: 10
+  },
+  compact: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -80,7 +84,10 @@ const justifyContentStyle = (col) => col.align === 'right' ? 'flex-end' : col.al
         <div
           v-for="(col, index) in columns"
           :key="index"
-          :class="computedClasses.cell"
+          :class="{
+            [computedClasses.cell]: true,
+            [col.className]: col.className
+          }"
           :style="getCellStyle(col)"
         >
           {{ col.headerName }}
@@ -146,7 +153,10 @@ const justifyContentStyle = (col) => col.align === 'right' ? 'flex-end' : col.al
           <div
             v-for="(col, colIndex) in columns"
             :key="colIndex"
-            :class="computedClasses.cell"
+            :class="{
+              [computedClasses.cell]: true,
+              [col.className]: col.className
+            }"
             :style="getCellStyle(col)"
           >
             <template
@@ -156,6 +166,7 @@ const justifyContentStyle = (col) => col.align === 'right' ? 'flex-end' : col.al
                 :is="col.component"
                 :row-data="rowData"
                 :row-index="rowIndex"
+                :compact="compact"
               />
             </template>
             <template v-else>

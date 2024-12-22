@@ -20,7 +20,7 @@
         href="#"
         class="hover-underline"
       >
-        See All
+        {{showAllText}}
       </a>
     </header>
 
@@ -49,6 +49,10 @@ defineProps({
   noHeader: {
     type: Boolean,
     default: false
+  },
+  showAllText: {
+    type: String,
+    default: 'Show all'
   }
 })
 </script>
