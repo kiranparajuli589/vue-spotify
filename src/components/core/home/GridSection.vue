@@ -115,7 +115,8 @@ defineProps({
       &:hover {
         background: rgb(26 26 26);
         .play-button {
-          display: flex;
+          opacity: 1;
+          transform: scale(1);
         }
       }
 
