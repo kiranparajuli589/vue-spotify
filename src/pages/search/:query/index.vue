@@ -11,7 +11,7 @@
           <img
             :src="getRandomLoremFlickerImage()"
             alt="Random Image"
-            class="top-result--image"
+            class="top-result--image elevation-8"
           >
           <h2>
             <a href="#">
@@ -19,7 +19,7 @@
             </a>
           </h2>
           <p>
-            <span>Song</span>&nbsp;
+            <span class="text-secondary">Song</span>&nbsp;
             <span>.</span>&nbsp;
             <a href="#">{{ faker.person.fullName() }}</a>
           </p>
@@ -34,8 +34,15 @@
             :key="i"
           >
             <img
+              src="@/assets/icons/svgs/arrow_right_white.svg"
+              alt="Play Icon"
+              class="play-icon"
+            >
+
+            <img
               :src="getRandomLoremFlickerImage()"
               alt="Random Image"
+              class="track-image"
             >
             <div class="info">
               <h3>
@@ -51,6 +58,7 @@
               <img
                 src="@/assets/icons/contextMenu/add_circle.svg"
                 alt="Add Icon"
+                class="add-icon"
               >
               <div>
                 {{ faker.number.int(25) }}:{{ faker.number.int(59) }}
@@ -58,6 +66,7 @@
               <img
                 src="@/assets/icons/svgs/more_horz.svg"
                 alt="More Icon"
+                class="more-icon"
               >
             </div>
           </li>
@@ -71,12 +80,10 @@
       class-name="featuring"
       :size="2"
     />
-
     <PopularArtists
       :no-show-all="true"
       class-name="artists"
     />
-
     <PopularAlbumsAndSingles
       title="Albums"
       :no-show-all="true"

@@ -2,7 +2,13 @@
   padding: 1rem;
   section.top {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(200px, .6fr) 1fr;
+
+    @media (max-width: 1366px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
     gap: 2rem;
     .top-result {
       h1 {
@@ -15,8 +21,9 @@
         padding: 1rem;
         border-radius: 8px;
         transition: all 0.3s ease-in-out;
+        background: rgba(255, 255, 255, 0.02);
         &:hover {
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
         }
         .top-result--image {
           aspect-ratio: 1;
@@ -50,7 +57,26 @@
         padding-block: 4px;
         padding-inline: 4px 8px;
         border-radius: 4px;
-        img {
+        position: relative;
+        cursor: pointer;
+        img.play-icon {
+          position: absolute;
+          opacity: 0;
+          transition: all 0.3s ease-in-out;
+          aspect-ratio: 1;
+          height: 32px;
+          width: 32px;
+          top: .5rem;
+          left: .5rem;
+          transform: scale(0);
+        }
+        &:hover {
+          img.play-icon {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        img.track-image {
           aspect-ratio: 1;
           height: 40px;
           width: 40px;
@@ -63,8 +89,8 @@
           }
           p {
             font-size: 0.8rem;
-            span {
-              color: #777;
+            a {
+              color: rgb(var(--v-theme-secondary))
             }
           }
         }
@@ -86,6 +112,14 @@
             width: 20px;
             opacity: 0;
             pointer-events: none;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+              filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(100deg) brightness(1000%);
+            }
+            &:active {
+              transform: scale(0.9);
+            }
           }
 
           div {

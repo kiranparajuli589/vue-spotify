@@ -21,6 +21,9 @@
   .app_main {
     overflow-y: auto;
     margin-left: 8px;
+    @media only screen and (max-width: 768px) {
+      grid-column: 1 / -1;
+    }
 
     &::-webkit-scrollbar {
       width: 8px;

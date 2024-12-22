@@ -5,6 +5,7 @@
         v-model="tab"
         mandatory
         selected-class="text-primary bg-white"
+        show-arrows
       >
         <v-chip
           v-for="tabItem in tabs"
