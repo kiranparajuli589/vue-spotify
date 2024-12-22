@@ -18,11 +18,12 @@ const SongsTableCols = [
   {
     field: "album",
     headerName: "Album",
+    grid: 2,
   },
   {
     field: "duration",
     headerName: "Duration",
-    width: 100
+    width: 100,
   },
 ];
 

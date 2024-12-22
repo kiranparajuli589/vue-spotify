@@ -5,6 +5,7 @@
       :rows="data"
       :is-loading="isLoading"
       :loading-row-count="12"
+      min-width="1000px"
     />
   </section>
 </template>
