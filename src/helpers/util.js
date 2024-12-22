@@ -1,5 +1,22 @@
-export const getAssetUrl = (url) => new URL(url, import.meta.url).href
+import {faker} from "@faker-js/faker";
+
 export const getRandomLoremFlickerImage = () => {
-  const randomId = Math.floor(Math.random() * 1000);
-  return `https://loremflickr.com/320/240?random=${randomId}`;
+  return faker.image.urlPicsumPhotos({
+    width: 350,
+    height: 350,
+    blur: 0
+  })
 }
+
+export const getDataGridClasses = (classes = {}) => ({
+  header: `grid__header ${classes?.header || ""}`,
+  body: `grid__body overflow-y-auto ${classes?.body || ""}`,
+  row: `grid__row ${classes?.row || ""}`,
+  cell: `grid__cell p-2 ${classes?.cell || ""}`,
+  root: `grid__root ${classes?.root || ""}`,
+  actions: `grid__actions ${classes?.actions || ""}`,
+  action: `grid__action ${classes?.action || ""}`,
+  empty: `grid__empty ${classes?.empty || ""}`,
+  loadingRow: `grid__loading_row ${classes?.loadingRow || ""}`,
+  loadingCell: `grid__loading_cell ${classes?.loadingCell || ""}`,
+});

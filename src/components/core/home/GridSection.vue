@@ -5,7 +5,7 @@
       [className]: true
     }"
   >
-    <header>
+    <header v-if="!noHeader">
       <h3>
         <a
           href="#"
@@ -13,9 +13,12 @@
         >{{ title }}</a>
       </h3>
       <a
+        v-if="!noShowAll"
         href="#"
         class="hover-underline"
-      >See All</a>
+      >
+        See All
+      </a>
     </header>
 
     <div class="articles">
@@ -35,6 +38,14 @@ defineProps({
   title: {
     type: String,
     default: 'Popular Artists'
+  },
+  noShowAll: {
+    type: Boolean,
+    default: false
+  },
+  noHeader: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -53,7 +64,6 @@ defineProps({
     justify-content: space-between;
     align-items: center;
     h3 {
-
       a {
         font-weight: 800;
         color: white;

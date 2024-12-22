@@ -1,0 +1,99 @@
+.search-page {
+  padding: 1rem;
+  section.top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    .top-result {
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      article {
+        position: relative;
+        padding: 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .top-result--image {
+          aspect-ratio: 1;
+          height: 92px;
+          width: 92px;
+          border-radius: 8px;
+        }
+        h2 {
+          a {
+            font-size: 32px;
+          }
+        }
+        &:hover {
+          .play-button {
+            display: flex;
+            right: 1rem;
+          }
+        }
+      }
+    }
+    .song-results {
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      ul li {
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
+        gap: 1rem;
+        padding-block: 4px;
+        padding-inline: 4px 8px;
+        border-radius: 4px;
+        img {
+          aspect-ratio: 1;
+          height: 40px;
+          width: 40px;
+          border-radius: 8px;
+        }
+        .info {
+          h3 {
+            font-size: 1rem;
+            font-weight: 500;
+          }
+          p {
+            font-size: 0.8rem;
+            span {
+              color: #777;
+            }
+          }
+        }
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          .actions img {
+            opacity: 1;
+            pointer-events: all;
+          }
+        }
+        .actions {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          img {
+            aspect-ratio: 1;
+            height: 20px;
+            width: 20px;
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          div {
+            font-size: 0.8rem;
+            color: #777;
+          }
+        }
+      }
+    }
+  }
+}

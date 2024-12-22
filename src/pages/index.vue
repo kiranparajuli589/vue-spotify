@@ -12,7 +12,6 @@
     />
     <PopularRadio
       title="Playlist From Our Editors"
-      :menu-items="PopularRadioContextMenu"
     />
   </div>
 </template>

@@ -14,6 +14,9 @@ importers:
       '@mdi/font':
         specifier: 7.4.47
         version: 7.4.47
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       roboto-fontface:
         specifier: '*'
         version: 0.10.0

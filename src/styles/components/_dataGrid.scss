@@ -1,0 +1,61 @@
+
+
+.grid {
+
+  &__root {
+    .truncate {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .pulse {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(
+          90deg,
+          rgba(200, 200, 200, 0.1) 25%,
+          rgba(200, 200, 200, 0.2) 50%,
+          rgba(200, 200, 200, 0.1) 75%
+      );
+      background-size: 200% 100%;
+      animation: pulse 2s infinite;
+      border-radius: 4px;
+    }
+    @keyframes pulse {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .grow {
+      flex-grow: 1;
+    }
+
+  }
+  &__header {
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: .875rem;
+    font-weight: 500;
+    color: rgb(179, 179, 179);
+  }
+  &__body {
+    .grid__row {
+      margin-bottom: .5rem;
+    }
+  }
+  &__row {
+
+  }
+  &__cell {
+
+  }
+  &__loading_cell {
+    height: 2rem;
+  }
+}

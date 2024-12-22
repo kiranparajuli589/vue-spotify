@@ -4,7 +4,7 @@
   >
     <div class="position-relative">
       <img
-        :src="getRandomLoremFlickerImage()"
+        :src="faker.image.urlPicsumPhotos({width: 200, height: 200, blur: 0})"
         alt="artist"
         class="main elevation-8"
       >
@@ -12,16 +12,22 @@
     </div>
     <div class="px-2 pb-2">
       <h3>{{ faker.person.fullName() }}</h3>
-      <p>Artist</p>
+      <p>{{ profile ? "Profile" : "Artist" }}</p>
     </div>
   </CardWithContextMenu>
 </template>
 <script setup>
 import { faker } from "@faker-js/faker";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
-import { getRandomLoremFlickerImage } from "@/helpers/util";
 import CardWithContextMenu from "@/components/designComponents/CardWithContextMenu.vue";
 import {ArtistCardContextMenu} from "@/constants/contextMenuItems.js";
+
+defineProps({
+  profile: {
+    type: Boolean,
+    default: false
+  }
+})
 </script>
 
 <style lang="scss" scoped>

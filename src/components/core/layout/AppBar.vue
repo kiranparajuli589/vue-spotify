@@ -15,13 +15,13 @@
     </div>
     <div class="flex-grow-1" />
 
-    <button class="home-btn">
+    <RouterLink class="home-btn" to="/">
       <VImg
-        src="@/assets/icons/svgs/home_filled.svg"
+        :src="homeIcon"
         height="28"
         width="28"
       />
-    </button>
+    </RouterLink>
     <form
       :class="{
         'd-flex': true,
@@ -43,6 +43,7 @@
         placeholder="What do you want to play?"
         @focus="isSearchInputFocused = true"
         @blur="isSearchInputFocused = false"
+        @keydown.enter="onSubmit"
       >
 
       <template v-if="search.length > 0">
@@ -59,15 +60,16 @@
         </button>
       </template>
       <template v-else>
-        <button
-          type="submit"
+        <RouterLink
+          to="/search"
+          class="to-search"
         >
           <VImg
-            src="@/assets/icons/svgs/folder_outlined.svg"
+            :src="folderIcon"
             height="28"
             width="28"
           />
-        </button>
+        </RouterLink>
       </template>
     </form>
     <div class="flex-grow-1" />
@@ -88,14 +90,46 @@
   </nav>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, computed } from 'vue'
+import {useRouter} from "vue-router";
+import { debounce } from 'lodash'
+
 const search = ref('')
 const isSearchInputFocused = ref(false)
+const router = useRouter()
+
+const isHomePage = computed(() => router.currentRoute.value.name === '/')
+const isSearchPage = computed(() => /^\/search\/?$/.test(router.currentRoute.value.path))
+
+const homeIcon = computed(() => {
+  if (isHomePage.value) {
+    return new URL('@/assets/icons/svgs/home_filled.svg', import.meta.url).href
+  }
+  return new URL('@/assets/icons/svgs/home_outlined.svg', import.meta.url).href
+})
+const folderIcon = computed(() => {
+  if (isSearchPage.value) {
+    return new URL('@/assets/icons/svgs/folder_filled.svg', import.meta.url).href
+  }
+  return new URL('@/assets/icons/svgs/folder_outlined.svg', import.meta.url).href
+})
 
 const onSubmit = (e) => {
   e.preventDefault()
   console.log('Search:', search.value)
+  router.push(`/search/${search.value}`)
 }
+
+watch(() => search.value, (nV) => {
+  debouncedNavigation(nV)
+})
+
+const debouncedNavigation = debounce((nV) => {
+  router.push(`/search/${nV}`)
+}, 500)
+
+
+
 </script>
 <style lang="sass">
 .app_bar
@@ -131,7 +165,7 @@ const onSubmit = (e) => {
   form
     position: relative
 
-    .search-icon, .reset-btn, button[type="submit"]
+    .search-icon, .reset-btn, .to-search
       position: absolute
       top: 50%
       transform: translateY(-50%)
@@ -143,11 +177,11 @@ const onSubmit = (e) => {
     .search-icon
       left: 14px
 
-    .reset-btn, button[type="submit"]
+    .reset-btn, .to-search
       cursor: pointer
       right: 14px
 
-    button[type="submit"]
+    .to-search
       border-left: 1px solid #909090
       padding-left: 10px
       border-radius: 0

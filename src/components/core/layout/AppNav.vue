@@ -165,7 +165,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, reactive } from "vue";
 import NavCard from "@/components/core/layout/NavCard.vue";
 import {useAppStore} from "@/stores/app.js";
 import ChooseALanguageModal from "@/components/core/layout/ChooseALanguageModal.vue";
@@ -218,13 +218,13 @@ watch(() => appStore.appNav.isCollapsed, (value) => {
 })
 
 
-const showTooltip = {
-  playlist: ref(false),
-  podcast: ref(false)
-}
+const showTooltip = reactive({
+  playlist: false,
+  podcast: false,
+})
 
 const setShowTooltip = (key, value) => {
-  showTooltip[key].value = value;
+  showTooltip[key] = value;
 }
 
 </script>
