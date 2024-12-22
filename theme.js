@@ -7,6 +7,8 @@ const Theme = {
     'surface-variant': '#1f1f1f',
     'on-surface-variant': '#e2e2e2',
 
+    'on-surface': '#ffffff',
+
     'secondary': "rgb(179, 179, 179)",
   }
 }
