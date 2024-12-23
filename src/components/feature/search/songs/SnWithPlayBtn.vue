@@ -55,9 +55,6 @@ defineProps({
         height: 32px;
         width: 32px;
         border-radius: 50%;
-        &:hover {
-          background: rgba(0, 0, 0, 0.1);
-        }
         &--compact {
           height: 24px;
           width: 24px;

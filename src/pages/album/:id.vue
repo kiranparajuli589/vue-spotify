@@ -1,16 +1,16 @@
 <template>
   <section class="album">
     <header
-      class="album--header"
+      class="album--header ease-transition"
       :style="{
-        background: headerSectionBg
+        background: actionSectionBg
       }"
     >
-      <img
+      <CustomImage
         class="album--banner"
         :src="album.image"
         :alt="album.title"
-      >
+      />
       <div class="album--info">
         <VSpacer />
         <h4>Album</h4>
@@ -27,9 +27,9 @@
       </div>
     </header>
     <section
-      class="album--actions"
+      class="album--actions ease-transition"
       :style="{
-        background: actionSectionBg
+        background: albumSectionBg
       }"
     >
       <PlayBtn
@@ -145,24 +145,22 @@
   </section>
 </template>
 <script setup>
-import {computed, ref, onMounted, watch} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import {faker} from "@faker-js/faker";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import {AlbumDetailView, useAppStore} from "@/stores/app.js";
 import Theme from "../../../theme.js";
 import DataGrid from "@/components/designComponents/DataGrid.vue";
 import {AlbumSongsTableCols} from "@/constants/songsTableCols.js";
-import getImageColor, {addOpacityToRgb, darkenByFactor} from "@/helpers/imageColor.js";
 import GridSection from "@/components/core/home/GridSection.vue";
 import AlbumCard from "@/components/core/AlbumCard.vue";
 import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactiveGridSize.js";
 import {useRouter} from "vue-router";
+import useGradientFromImage from "@/composables/useGradientFromImage.js";
+import CustomImage from "@/components/designComponents/CustomImage.vue";
 
 const store = useAppStore();
 const size = useHomeSectionReactiveGridSize()
-
-const headerSectionBg = ref("transparent")
-const actionSectionBg = ref("rgb(0, 0, 0)")
 
 const createSong = () => ({
   title: faker.lorem.words(3),
@@ -202,28 +200,32 @@ const getAlbum = () => ({
 
 const router = useRouter()
 const album = ref(getAlbum())
+
+const {
+  albumSectionBg,
+  actionSectionBg
+} = useGradientFromImage(album.value.image)
+
 watch(() => router.currentRoute.value.params.id, () => {
   album.value = getAlbum()
-  // scroll to top smooth
   const appMain = document.querySelector(".app_main")
   appMain.scrollTo({
     top: 0,
     behavior: "smooth"
   })
 })
-watch(() => album.value, () => {
-  handleImageColor()
-})
 
-const handleImageColor = () => {
-  getImageColor(album.value.image)
-    .then(color => {
-      actionSectionBg.value = darkenByFactor(color, 30)
-      const topEnd = addOpacityToRgb(color, 0.3)
-      const bottomEnd = darkenByFactor(color, 20)
-      headerSectionBg.value = `linear-gradient(180deg, ${topEnd}, ${bottomEnd})`
-    })
-}
+onMounted(() => {
+  const appMain = document.querySelector(".app_main")
+  appMain.addEventListener("scroll", () => {
+    const gridHeader = document.querySelector(".grid__header")
+    if (appMain.scrollTop > 100) {
+      gridHeader.classList.add("scrolled")
+    } else {
+      gridHeader.classList.remove("scrolled")
+    }
+  })
+})
 
 const formattedDuration = computed(
   () => {
@@ -253,18 +255,6 @@ const viewOptions = [
     value: AlbumDetailView.List
   },
 ]
-onMounted(() => {
-  const appMain = document.querySelector(".app_main")
-  appMain.addEventListener("scroll", () => {
-    const gridHeader = document.querySelector(".grid__header")
-    if (appMain.scrollTop > 100) {
-      gridHeader.classList.add("scrolled")
-    } else {
-      gridHeader.classList.remove("scrolled")
-    }
-  })
-  handleImageColor()
-})
 
 const formattedDate =
   new Date().toLocaleDateString("en-US", {

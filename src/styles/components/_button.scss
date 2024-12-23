@@ -41,3 +41,13 @@ a {
     background: white !important;
     color: black !important;
 }
+
+.icon-btn {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transition: background 0.3s ease-in-out;
+
+  :hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

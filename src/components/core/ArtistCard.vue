@@ -1,6 +1,7 @@
 <template>
   <CardWithContextMenu
     :menu-items="ArtistCardContextMenu"
+    :to="`/artist/${artist.id}`"
   >
     <div class="position-relative">
       <img
@@ -30,6 +31,7 @@ const props = defineProps({
 })
 
 const artist = {
+  id: faker.number.bigInt(),
   image: faker.image.urlPicsumPhotos({width: 200, height: 200, blur: 0}),
   title: faker.person.fullName(),
   subtitle: props.profile ? "Profile" : "Artist",

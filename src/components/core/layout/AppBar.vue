@@ -152,18 +152,10 @@ const homeIcon = computed(() => {
       font-weight: 500
 
     .icon-btn
-      cursor: pointer
       height: 100%
       width: auto
-      aspect-ratio: 1
       display: flex
       justify-content: center
       align-items: center
-      background: rgba(255, 255, 255, 0.01)
-      border-radius: 50%
       padding: 8px
-      transition: background 0.3s ease-in-out
-
-      &:hover
-        background: rgba(255, 255, 255, 0.1)
 </style>

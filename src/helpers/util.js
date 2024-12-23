@@ -20,3 +20,9 @@ export const getDataGridClasses = (classes = {}) => ({
   loadingRow: `grid__loading_row ${classes?.loadingRow || ""}`,
   loadingCell: `grid__loading_cell ${classes?.loadingCell || ""}`,
 });
+
+
+// 456783038 -> 456,783,038
+export const formatNumberWithComma = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
