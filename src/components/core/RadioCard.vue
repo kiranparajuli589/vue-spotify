@@ -3,11 +3,11 @@
     :menu-items="menuItems"
   >
     <div class="position-relative">
-      <img
+      <CustomImage
         :src="radio.image"
         alt="artist"
         class="main"
-      >
+      />
       <PlayBtn />
     </div>
     <div class="px-2 pb-2">
@@ -19,6 +19,7 @@
 import {faker} from "@faker-js/faker";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import CardWithContextMenu from "@/components/designComponents/CardWithContextMenu.vue";
+import CustomImage from "@/components/designComponents/CustomImage.vue";
 
 defineProps({
   menuItems: {

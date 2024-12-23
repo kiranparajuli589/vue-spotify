@@ -4,11 +4,11 @@
     :to="`/album/${faker.word.sample({length: 12})}`"
   >
     <div class="position-relative">
-      <img
+      <CustomImage
         :src="album.image"
         alt="artist"
         class="main"
-      >
+      />
       <PlayBtn />
     </div>
     <div class="px-2 pb-2">
@@ -24,6 +24,7 @@ import {faker} from "@faker-js/faker";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import CardWithContextMenu from "@/components/designComponents/CardWithContextMenu.vue";
 import {AlbumCardContextMenu} from "@/constants/contextMenuItems.js";
+import CustomImage from "@/components/designComponents/CustomImage.vue";
 
 defineProps({
   album: {
