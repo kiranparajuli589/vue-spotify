@@ -71,6 +71,7 @@ const menuLinks = [
   {label: "Download", href: "#"},
   {label: "Privacy", href: "#"},
   {label: "Terms", href: "#"},
+  {label: "Github", href: "https://github.com/kiranparajuli589/vue-spotify"}
 ]
 </script>
 <style lang="sass" scoped>

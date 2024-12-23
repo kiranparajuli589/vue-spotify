@@ -27,6 +27,13 @@
       <div class="flex-grow-1"/>
       <div class="auth-links">
         <a
+          href="https://github.com/kiranparajuli589/vue-spotify"
+          target="_blank"
+          class="flex-centered"
+        >
+          Github
+        </a>
+        <a
           href="#"
           class="flex-centered"
         >
