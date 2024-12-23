@@ -31,8 +31,10 @@ ul li {
   list-style: none;
 }
 
-.v-overlay__scrim {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  opacity: .95;
+.language-chooser {
+  .v-overlay__scrim {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    opacity: .95;
+  }
 }

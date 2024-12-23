@@ -17,13 +17,13 @@
       v-model="menu"
       :style="menuPositionStyle()"
       :class="{
-        'custom-menu elevation-8': true,
+        'custom-menu': true,
         'custom-menu--right': menuRightEdge,
         [uniqueMenuClass]: true,
       }"
       close-on-back
     >
-      <VCard>
+      <VCard elevation="12">
         <VList>
           <VListItem
             v-for="item in menuItems"
@@ -210,17 +210,10 @@ article {
 </style>
 <style lang="scss">
 .custom-menu {
-  position: absolute;
-  z-index: 1000;
   &--right {
     .v-overlay__content {
       right: 0;
     }
   }
-}
-
-.submenu {
-  position: absolute;
-  z-index: 2000;
 }
 </style>

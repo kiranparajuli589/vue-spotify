@@ -93,7 +93,14 @@ export const PopularRadioContextMenu = [
     icon: new URL('@/assets/icons/contextMenu/folder.svg', import.meta.url).href,
     endIcon: ArrowRight,
     children: [
-      // add html from here
+      {
+        title: "New Folder",
+        icon: new URL('@/assets/icons/svgs/plus.svg', import.meta.url).href,
+      },
+      {
+        title: "Liked Songs",
+        icon: new URL('@/assets/icons/contextMenu/genres.svg', import.meta.url).href,
+      },
     ]
   },
   {
