@@ -15,13 +15,13 @@
           {{ title }}
         </a>
       </h3>
-      <a
+      <RouterLink
         v-if="!noShowAll"
-        href="#"
+        :to="`/section/${faker.number.int({min: 1000000, max: 10000000})}`"
         class="hover-underline"
       >
-        {{showAllText}}
-      </a>
+        {{ showAllText }}
+      </RouterLink>
     </header>
 
     <div class="articles">
@@ -33,6 +33,7 @@
 </template>
 <script setup>
 import { defineProps } from 'vue'
+import { faker } from '@faker-js/faker'
 defineProps({
   className: {
     type: String,

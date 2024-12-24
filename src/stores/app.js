@@ -8,7 +8,8 @@ export const AlbumDetailView = {
 export const useAppStore = defineStore('app', {
   state: () => ({
     isAppNavCollapsed: false,
-    albumDetailViewAs: AlbumDetailView.List
+    albumDetailViewAs: AlbumDetailView.List,
+    sectionPageHeading: null,
   }),
   actions: {
     toggleAppNav() {
@@ -18,6 +19,9 @@ export const useAppStore = defineStore('app', {
       this.albumDetailViewAs = this.albumDetailViewAs === AlbumDetailView.List
         ? AlbumDetailView.Compact
         : AlbumDetailView.List
+    },
+    setSectionPageHeading(heading) {
+      this.sectionPageHeading = heading
     }
   }
 })
