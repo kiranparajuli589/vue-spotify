@@ -39,12 +39,12 @@
         >
           Sign up
         </a>
-        <a
-          href="/auth/login"
+        <RouterLink
+          to="/auth/login"
           class="login-link flex-centered"
         >
           Log in
-        </a>
+        </RouterLink>
       </div>
     </template>
     <div v-else class="mobile-links">
