@@ -40,7 +40,7 @@
           Sign up
         </a>
         <a
-          href="#"
+          href="/auth/login"
           class="login-link flex-centered"
         >
           Log in
