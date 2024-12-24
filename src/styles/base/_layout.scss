@@ -12,7 +12,11 @@
     background: rgb(var(--v-theme-primary-lighten-1));
     border-radius: 8px;
 
-    height: calc(100vh - 64px - 12px);
+    // first 64px: app_nav
+    // 12px: margin/padding
+    // 64px: the sign-up-free footer
+    //       it can be made conditional for logged in users
+    height: calc(100vh - 64px - 12px - 64px);
 
     @media only screen and (max-width: 768px) {
       margin-top: .5rem;
@@ -46,5 +50,9 @@
     .icon-btn {
       padding: 4px;
     }
+  }
+  .preview_of_spotify_footer {
+    grid-column: 1 / -1;
+    height: 64px;
   }
 }
