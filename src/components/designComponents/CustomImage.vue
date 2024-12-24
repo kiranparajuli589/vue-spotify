@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { defineProps } from 'vue';
-defineProps({
+import { ref, watch, defineProps } from 'vue';
+
+const props = defineProps({
   src: {
     type: String,
     required: true
@@ -30,8 +30,13 @@ defineProps({
 });
 const loaded = ref(false);
 const handleLoad = () => {
+  console.log('loaded');
   loaded.value = true;
 };
+watch(() => props.src, () => {
+  console.log('src changed');
+  loaded.value = false;
+});
 </script>
 <style lang="scss" scoped>
 img {

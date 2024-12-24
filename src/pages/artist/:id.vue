@@ -14,7 +14,6 @@
         }"
       />
 
-
       <section class="artist--actions">
         <PlayBtn
           class-name="artist--play"
@@ -189,8 +188,8 @@
   </section>
 </template>
 <script setup>
-import {ref} from "vue";
-import {useRoute} from "vue-router";
+import {ref, watch} from "vue";
+import {useRouter} from "vue-router";
 import {faker} from "@faker-js/faker";
 import useGradientFromImage from "@/composables/useGradientFromImage.js";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
@@ -204,14 +203,14 @@ import SnWithPlayBtn from "@/components/feature/search/songs/SnWithPlayBtn.vue";
 import SongTitle from "@/components/feature/search/songs/SongTitle.vue";
 import AlbumHeader from "@/components/feature/album/AlbumHeader.vue";
 
-const { params: { id: artistId } = {} } = useRoute()
+const router = useRouter()
+const artistId = ref(router.currentRoute.value.params.id)
 
-const fakeArtist = {
+const generateFakeArtist = () => ({
   id: artistId,
   isVerified: faker.datatype.boolean(),
   name: faker.person.fullName(),
-  image: faker.image.urlPicsumPhotos(),
-  // image: faker.image.urlPicsumPhotos({width: 1366, height: 768}),
+  image: faker.image.urlPicsumPhotos({blur: 0}),
   monthlyListeners: faker.number.int({min: 100000, max: 1000000}),
   popularSongs: Array.from({length: faker.number.int({min: 5, max: 15})}, () => ({
     title: faker.lorem.words(3),
@@ -221,17 +220,33 @@ const fakeArtist = {
     views: faker.number.int({min: 100000, max: 1000000}),
   })),
   ranking: faker.number.int({min: 1, max: 100}),
-}
+})
 
-const discographyTabs = Array.from({length: 4}, () => ({
+const generateDiscographyTabs = () => Array.from({length: 4}, () => ({
   title: faker.lorem.words({min: 1, max: 3}),
 }))
 
+
 const showMore = ref(false)
+const fakeArtist = ref(generateFakeArtist())
+const discographyTabs = ref(generateDiscographyTabs())
+
 const {
   headerSectionBg,
   albumSectionBg
-} = useGradientFromImage(fakeArtist.image)
+} = useGradientFromImage(fakeArtist.value.image)
 
 const computedSize = useHomeSectionReactiveGridSize()
+
+watch(() => router.currentRoute.value.params.id, () => {
+  artistId.value = router.currentRoute.value.params.id
+  fakeArtist.value = generateFakeArtist()
+  discographyTabs.value = generateDiscographyTabs()
+
+  const appMain = document.querySelector(".app_main")
+  appMain.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
+})
 </script>

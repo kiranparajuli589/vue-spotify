@@ -183,7 +183,7 @@ const getRecommendation = () => ({
 })
 
 const getAlbum = () => ({
-  image: faker.image.urlPicsumPhotos(),
+  image: faker.image.urlPicsumPhotos({blur: 0}),
   title: faker.lorem.words({
     min: 1, max: 3
   }),
@@ -217,6 +217,10 @@ watch(() => router.currentRoute.value.params.id, () => {
 
 onMounted(() => {
   const appMain = document.querySelector(".app_main")
+  appMain.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
   appMain.addEventListener("scroll", () => {
     const gridHeader = document.querySelector(".grid__header")
     if (appMain.scrollTop > 100) {
@@ -264,5 +268,4 @@ const formattedDate =
   })
 
 const copyrightText = `© ${new Date().getFullYear()} ${faker.company.name()}`
-
 </script>
