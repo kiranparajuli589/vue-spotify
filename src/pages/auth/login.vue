@@ -67,15 +67,15 @@
       </button>
     </form>
 
-    <a href="">
+    <RouterLink to="/auth/forget-password">
       Forgot your password?
-    </a>
+    </RouterLink>
 
     <div>
       Don't have an account?
-      <a href="">
+      <RouterLink to="/auth/register">
         Sign up for Spotify
-      </a>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -144,6 +144,7 @@ const submitLogin = () => {
       cursor: pointer
       margin-top: 2rem
       font-weight: 600
+      background-color: rgb(var(--v-theme-play))
   a
     text-decoration: underline
     font-weight: 500

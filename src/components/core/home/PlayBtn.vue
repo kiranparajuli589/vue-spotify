@@ -36,9 +36,12 @@
           <h3>Start listening with a free Spotify account</h3>
 
           <div class="actions">
-            <button class="filled-btn">
+            <RouterLink
+              class="filled-btn"
+              to="/auth/register"
+            >
               Sign up free
-            </button>
+            </RouterLink>
             <button class="outline-btn">
               Download App
             </button>
@@ -135,11 +138,14 @@ const {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .2rem;
+      gap: 1rem;
       button {
         width: fit-content;
         padding: 1rem 2rem;
-        margin-bottom: 1rem;
+      }
+      .filled-btn {
+        background-color: rgb(var(--v-theme-play)) !important;
+        padding: 1rem 2rem;
       }
     }
 

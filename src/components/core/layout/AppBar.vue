@@ -33,12 +33,12 @@
         >
           Github
         </a>
-        <a
-          href="#"
+        <RouterLink
+          to="/auth/register"
           class="flex-centered"
         >
           Sign up
-        </a>
+        </RouterLink>
         <RouterLink
           to="/auth/login"
           class="login-link flex-centered"

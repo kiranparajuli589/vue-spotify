@@ -13,7 +13,7 @@
     </footer>
   </section>
 </template>
-<style lang="sass" scoped>
+<style lang="sass">
 .auth_layout
   height: 100vh
   display: flex
@@ -28,7 +28,7 @@
     padding: 2rem
 
   &__card
-    background: #121212
+    background: linear-gradient(#121212, #141414)
     width: 100%
     max-width: 734px
     margin-inline: auto
@@ -43,6 +43,11 @@
     color: white
     font-size: 0.875rem
     background: #121212
+
+  a
+    text-decoration: underline !important
+    &:hover
+      color: rgb(var(--v-theme-play)) !important
 </style>
 
 <script setup lang="ts">
