@@ -26,3 +26,6 @@ export const getDataGridClasses = (classes = {}) => ({
 export const formatNumberWithComma = (number) => {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export const getAvatarUrl = () => `https://xsgames.co/randomusers/assets/avatars/${faker.person.sex()}/${faker.number.int({min: 1, max: 78})}.jpg`
+

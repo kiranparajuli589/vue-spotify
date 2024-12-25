@@ -152,7 +152,7 @@
   </section>
 </template>
 <script setup>
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 import {faker} from "@faker-js/faker";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import {AlbumDetailView, useAppStore} from "@/stores/app.js";
@@ -166,7 +166,6 @@ import {useRouter} from "vue-router";
 import CustomImage from "@/components/designComponents/CustomImage.vue";
 import Button from "@/components/designComponents/Button.vue";
 import useStickyHeader from "@/composables/useStickyHeader.js";
-import useStickyGridHeader from "@/composables/useStickyGridHeader.js";
 
 const store = useAppStore();
 const size = useHomeSectionReactiveGridSize()
@@ -213,7 +212,7 @@ const album = ref(getAlbum())
 const {
   stickyHeader,
   albumSectionBg,
-  actionSectionBg
+  actionSectionBg,
 } = useStickyHeader(album.value.image)
 
 watch(() => router.currentRoute.value.params.id, () => {
@@ -224,8 +223,6 @@ watch(() => router.currentRoute.value.params.id, () => {
     behavior: "smooth"
   })
 })
-
-useStickyGridHeader()
 
 const formattedDuration = computed(
   () => {

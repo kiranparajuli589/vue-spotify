@@ -12,8 +12,15 @@
       <PlayBtn />
     </div>
     <div class="px-2 pb-2">
-      <h3>{{ artist.title }}</h3>
-      <p>{{ artist.subtitle }}</p>
+      <h3>
+        {{ artist.title }}
+      </h3>
+      <p v-if="profile">
+        Profile
+      </p>
+      <p v-else>
+        {{ artist.subtitle }}
+      </p>
     </div>
   </CardWithContextMenu>
 </template>
@@ -22,20 +29,23 @@ import { faker } from "@faker-js/faker";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import CardWithContextMenu from "@/components/designComponents/CardWithContextMenu.vue";
 import {ArtistCardContextMenu} from "@/constants/contextMenuItems.js";
+import {getAvatarUrl} from "@/helpers/util.js";
 
-const props = defineProps({
+defineProps({
   profile: {
     type: Boolean,
     default: false
+  },
+  artist: {
+    type: Object,
+    default: () => ({
+      id: faker.number.bigInt(),
+      image: getAvatarUrl(),
+      title: faker.person.fullName(),
+      subtitle: "Artist",
+    })
   }
 })
-
-const artist = {
-  id: faker.number.bigInt(),
-  image: faker.image.urlPicsumPhotos({width: 200, height: 200, blur: 0}),
-  title: faker.person.fullName(),
-  subtitle: props.profile ? "Profile" : "Artist",
-}
 </script>
 
 <style lang="scss" scoped>

@@ -167,8 +167,8 @@ import AlbumHeader from "@/components/feature/album/AlbumHeader.vue";
 import ArtistAbout from "@/components/feature/artist/ArticleAbout.vue";
 import useStickyHeader from "@/composables/useStickyHeader.js";
 import {SongsMiniTableCols} from "@/constants/songsTableCols.js";
-import useStickyGridHeader from "@/composables/useStickyGridHeader.js";
 import Button from "@/components/designComponents/Button.vue";
+import {getAvatarUrl} from "@/helpers/util.js";
 
 const router = useRouter()
 const artistId = ref(router.currentRoute.value.params.id)
@@ -177,7 +177,8 @@ const generateFakeArtist = () => ({
   id: artistId,
   isVerified: faker.datatype.boolean(),
   name: faker.person.fullName(),
-  image: faker.image.urlPicsumPhotos({blur: 0}),
+  image: faker.image.urlPicsumPhotos({width: 1366, height: 768, blur: 0}),
+  avatar: getAvatarUrl(),
   monthlyListeners: faker.number.int({min: 100000, max: 1000000}),
   popularSongs: Array.from({length: faker.number.int({min: 5, max: 15})}, () => ({
     title: faker.lorem.words(3),
@@ -201,10 +202,8 @@ const discographyTabs = ref(generateDiscographyTabs())
 const {
   stickyHeader,
   albumSectionBg,
-  headerSectionBg
+  headerSectionBg,
 } = useStickyHeader(fakeArtist.value.image)
-useStickyGridHeader()
-
 
 const computedSize = useHomeSectionReactiveGridSize()
 

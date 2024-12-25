@@ -7,9 +7,10 @@
   >
     <template #articles>
       <ArtistCard
-        v-for="i in computedSize"
+        v-for="(artist, i) in artists.slice(0, computedSize)"
         :key="i"
         :profile="profile"
+        :artist="artist"
       />
     </template>
     <div v-if="showGradient" class="gradient" />
@@ -19,6 +20,8 @@
 import GridSection from "@/components/core/home/GridSection.vue";
 import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactiveGridSize.js";
 import ArtistCard from "@/components/core/ArtistCard.vue";
+import { faker } from "@faker-js/faker";
+import {getAvatarUrl} from "@/helpers/util.js";
 
 const props = defineProps({
   title: {
@@ -52,6 +55,15 @@ const props = defineProps({
 })
 
 const computedSize = useHomeSectionReactiveGridSize({ size: props?.size })
+
+const artists = Array.from({ length: 10 }, () => ({
+    id: faker.number.bigInt(),
+    image: getAvatarUrl(),
+    title: faker.person.fullName(),
+    subtitle: "Artist",
+  // }
+}))
+console.log(artists)
 </script>
 <style lang="scss">
 .popular-artists {

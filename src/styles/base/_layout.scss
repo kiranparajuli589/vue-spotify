@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   height: 100vh;
+  gap: 8px;
   .app_bar {
     grid-column: 1 / -1;
     @media only screen and (max-width: 768px) {
@@ -19,19 +20,18 @@
     // 12px: margin/padding
     // 64px: the sign-up-free footer
     //       it can be made conditional for logged in users
-    height: calc(100vh - 64px - 12px - 64px);
+    height: calc(100vh - 64px - 16px - 64px);
     @media only screen and (max-width: 768px) {
       height: calc(100vh - 64px - 12px);
     }
 
     @media only screen and (max-width: 768px) {
-      margin-top: .5rem;
+      margin-inline: .5rem;
     }
   }
   .app_main {
     overflow-y: auto;
     overflow-x: auto;
-    margin-left: 8px;
     @media only screen and (max-width: 768px) {
       grid-column: 1 / -1;
     }
@@ -61,7 +61,7 @@
   .preview_of_spotify_footer {
     grid-column: 1 / -1;
     height: 64px;
-    margin-top: 10px;
+    //margin-top: 10px;
     @media only screen and (max-width: 768px) {
       display: none !important;
     }

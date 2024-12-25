@@ -4,14 +4,13 @@
     <v-card>
       <div class="info">
         <img
-          :src="fakeArtist.image"
+          :src="fakeArtist.avatar"
           alt="Profile Picture"
           class="elevation-8"
         >
         <p>
           {{ formatNumberWithComma(fakeArtist.monthlyListeners) }} monthly listeners.
         </p>
-
       </div>
       <v-avatar class="artist--ranking">
         <span class="heading">#{{ fakeArtist.ranking }}</span>
