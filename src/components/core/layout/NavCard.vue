@@ -1,8 +1,12 @@
 <template>
   <v-menu
-    :model-value="showTooltip"
+    v-model="tooltipMenu"
     :close-on-content-click="false"
     location="right"
+    :class="{
+      'tooltip-menu': true,
+      'tooltip-menu--show': tooltipMenu
+    }"
   >
     <template #activator="{ props }">
       <div
@@ -27,8 +31,10 @@
   </v-menu>
 </template>
 <script setup>
-import { computed } from "vue";
+import { computed, defineProps, defineModel } from "vue";
 import {useAppStore} from "@/stores/app.js";
+
+const tooltipMenu = defineModel({ required: true})
 
 const props = defineProps({
   title: {
@@ -42,10 +48,6 @@ const props = defineProps({
   buttonText: {
     type: String,
     required: true,
-  },
-  showTooltip: {
-    type: Boolean,
-    default: false,
   },
 })
 const appStore = useAppStore()

@@ -166,25 +166,9 @@
       </GridSection>
     </section>
 
-    <section class="artist--about">
-      <h2>About</h2>
-      <v-card>
-        <div class="info">
-          <img
-            :src="fakeArtist.image"
-            alt="Profile Picture"
-            class="elevation-8"
-          >
-          <p>
-            {{ formatNumberWithComma(fakeArtist.monthlyListeners) }} monthly listeners.
-          </p>
-        </div>
-        <v-avatar class="artist--ranking">
-          <span class="heading">#{{ fakeArtist.ranking }}</span>
-          <span class="text-xs">in the world</span>
-        </v-avatar>
-      </v-card>
-    </section>
+    <ArtistAbout
+      :fake-artist="fakeArtist"
+    />
   </section>
 </template>
 <script setup>
@@ -193,7 +177,6 @@ import {useRouter} from "vue-router";
 import {faker} from "@faker-js/faker";
 import useGradientFromImage from "@/composables/useGradientFromImage.js";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
-import {formatNumberWithComma} from "@/helpers/util.js";
 import DataGrid from "@/components/designComponents/DataGrid.vue";
 import GridSection from "@/components/core/home/GridSection.vue";
 import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactiveGridSize.js";
@@ -202,6 +185,7 @@ import ArtistCard from "@/components/core/ArtistCard.vue";
 import SnWithPlayBtn from "@/components/feature/search/songs/SnWithPlayBtn.vue";
 import SongTitle from "@/components/feature/search/songs/SongTitle.vue";
 import AlbumHeader from "@/components/feature/album/AlbumHeader.vue";
+import ArtistAbout from "@/components/feature/artist/ArticleAbout.vue";
 
 const router = useRouter()
 const artistId = ref(router.currentRoute.value.params.id)

@@ -92,7 +92,7 @@
 
       <div class="d-flex flex-column ga-2 flex-grow-1 pt-8">
         <NavCard
-          :show-tooltip="showTooltip.playlist"
+          v-model="showTooltip.playlist"
           title="Create your first playlist"
           subtitle="It's easy we will help you"
           button-text="Create playlist"
@@ -100,7 +100,7 @@
           <template #tooltip>
             <VCard
               color="light-blue-lighten-2"
-              class="pa-4"
+              class="pa-4 arrow"
             >
               <h4>Create a playlist</h4>
               <p class="mb-4 text-grey-darken-4">
@@ -108,12 +108,12 @@
               </p>
               <div class="d-flex justify-end ga-4">
                 <button
-                  class="font-medium"
+                  class="font-medium text-sm"
                   @click="setShowTooltip('playlist', false)"
                 >
                   Not Now
                 </button>
-                <button class="filled-btn px-3 py-1 font-medium">
+                <button class="filled-btn px-3 py-1 font-medium text-sm">
                   Log in
                 </button>
               </div>
@@ -122,11 +122,34 @@
         </NavCard>
 
         <NavCard
+          v-model="showTooltip.podcast"
           title="Let's find some podcasts to follow"
           subtitle="We will keep you updated on new episodes"
           button-text="Browse podcasts"
-          :show-tooltip="showTooltip.podcast"
-        />
+        >
+          <template #tooltip>
+            <VCard
+              color="light-blue-lighten-2"
+              class="pa-4 arrow"
+            >
+              <h4>Find podcasts</h4>
+              <p class="mb-4 text-grey-darken-4">
+                Podcasts are a great way to stay informed and entertained
+              </p>
+              <div class="d-flex justify-end ga-4">
+                <button
+                  class="font-medium text-sm"
+                  @click="setShowTooltip('podcast', false)"
+                >
+                  Not Now
+                </button>
+                <button class="filled-btn px-3 py-1 font-medium text-sm">
+                  Log in
+                </button>
+              </div>
+            </VCard>
+          </template>
+        </NavCard>
       </div>
 
       <VFadeTransition>
@@ -224,6 +247,7 @@ const showTooltip = reactive({
 })
 
 const setShowTooltip = (key, value) => {
+  console.log(showTooltip)
   showTooltip[key] = value;
 }
 
