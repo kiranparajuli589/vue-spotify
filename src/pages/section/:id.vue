@@ -57,7 +57,7 @@ const resourceType = computed(() => {
   return router.currentRoute.value.query.type
   ?? RTypes[faker.number.int({min: 0, max: 2})]
 })
-console.log(resourceType.value, router.currentRoute.value)
+
 const isAlbums = computed(() => resourceType.value === RTypes[0])
 const isArtists = computed(() => resourceType.value === RTypes[1])
 const isRadio = computed(() => resourceType.value === RTypes[2])

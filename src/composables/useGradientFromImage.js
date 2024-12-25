@@ -15,13 +15,11 @@ const useGradientFromImage = (image) => {
   })
 
   const handleImageColor = () => {
-    console.log(image)
     if (!image) {
       return;
     }
     getImageColor(image)
       .then(color => {
-        console.log("color", color)
         actionSectionBg.value = darkenByFactor(color, 30)
         let topEnd = addOpacityToRgb(color, 0.3)
         let bottomEnd = darkenByFactor(color, 20)
@@ -30,7 +28,6 @@ const useGradientFromImage = (image) => {
         topEnd = darkenByFactor(color, 30)
         bottomEnd = "rgb(18 18 18)"
         albumSectionBg.value = `linear-gradient(180deg, ${topEnd}, ${bottomEnd})`
-        console.log(albumSectionBg.value)
       })
   }
 

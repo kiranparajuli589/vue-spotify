@@ -1,5 +1,6 @@
 <template>
   <VDialog
+    v-model="playModal"
     max-width="820"
     class="play-btn-dialog"
   >
@@ -53,9 +54,19 @@
         </div>
       </div>
     </VCard>
+
+    <div class="text-center my-2"
+    >
+      <button
+        @click="closeModal"
+      >
+        Close
+      </button>
+    </div>
   </VDialog>
 </template>
 <script setup>
+import {ref} from 'vue'
 import {faker} from "@faker-js/faker";
 import useGradientFromImage from "@/composables/useGradientFromImage.js";
 import CustomImage from "@/components/designComponents/CustomImage.vue";
@@ -74,6 +85,13 @@ const resource = {
 const {
   headerSectionBg
 } = useGradientFromImage(resource.image);
+
+
+const playModal = ref(false)
+
+const closeModal = () => {
+  playModal.value = false
+}
 </script>
 <style lang="scss" scoped>
 .play-button {

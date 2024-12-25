@@ -90,7 +90,7 @@
         </v-menu>
       </header>
 
-      <div class="d-flex flex-column ga-2 flex-grow-1 pt-12">
+      <div class="d-flex flex-column ga-2 flex-grow-1 pt-8">
         <NavCard
           :show-tooltip="showTooltip.playlist"
           title="Create your first playlist"

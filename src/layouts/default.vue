@@ -33,7 +33,6 @@ const {mdAndUp} = useResponsive()
 const router = useRouter()
 console.log(router.currentRoute.value.fullPath)
 const isAuthRoute = computed(() => {
-  console.log(router.currentRoute.value.fullPath)
   return router.currentRoute.value.fullPath.startsWith("/auth")
 })
 </script>

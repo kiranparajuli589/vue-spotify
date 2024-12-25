@@ -30,11 +30,9 @@ const props = defineProps({
 });
 const loaded = ref(false);
 const handleLoad = () => {
-  console.log('loaded');
   loaded.value = true;
 };
 watch(() => props.src, () => {
-  console.log('src changed');
   loaded.value = false;
 });
 </script>

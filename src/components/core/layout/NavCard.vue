@@ -68,6 +68,7 @@ const btnText = computed(() => {
   h2 {
     font-weight: 600;
     margin-bottom: .5rem;
+    font-size: .875rem;
   }
 
   p {

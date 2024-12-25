@@ -44,7 +44,6 @@ const forgetPassword = reactive({
 
 const router = useRouter()
 const handleSubmit = () => {
-  console.log(forgetPassword.email);
   router.push("/");
 };
 </script>

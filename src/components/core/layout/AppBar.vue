@@ -99,7 +99,10 @@ const homeIcon = computed(() => {
     padding: 4px 8px
 
   .branding
-    width: 230.93px
+    width: 100%
+    max-width: 368px
+    @media (max-width: 768px)
+      width: 368px
 
     a
       display: block
@@ -126,6 +129,11 @@ const homeIcon = computed(() => {
     display: flex
     align-items: center
     gap: 1rem
+
+    @media (max-width: 1024px)
+      gap: 0.5rem
+      a
+        padding-inline: 1rem !important
 
     a
       height: 100%
