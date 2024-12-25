@@ -1,7 +1,8 @@
 <template>
   <div>
-    <button
-      class="outline-btn"
+    <Button
+      variant="outlined"
+      size="sm"
       @click="dialog = true"
     >
       <img
@@ -15,11 +16,13 @@
           English
         </template>
       </VFadeTransition>
-    </button>
+    </Button>
     <v-dialog
       v-model="dialog"
       width="auto"
       class="language-chooser rounded"
+      close-on-content-click
+      close-on-back
     >
       <VCard
         max-width="1000"
@@ -53,9 +56,7 @@
             v-for="language in languages"
             :key="language.title"
           >
-            <button
-              @click="dialog = false"
-            >
+            <button>
               <h4>{{ language.title }}</h4>
               <p>{{ language.subtitle }}</p>
             </button>
@@ -70,22 +71,14 @@
 import { ref } from "vue";
 import {useAppStore} from "@/stores/app.js";
 import languages from "@/constants/language.js";
+import Button from "@/components/designComponents/Button.vue";
 
 const appStore = useAppStore();
 
 const dialog = ref(false);
 </script>
 <style lang="sass" scoped>
-.outline-btn
-  display: flex
-  gap: .5rem
-  padding: 4px 8px
-  font-size: 0.875rem
-  font-weight: 600
-  transition: all 0.3s ease-in-out
 .language-chooser
-  &--card
-    //padding: 1rem
   header
     padding: 1rem
     h2

@@ -4,6 +4,7 @@
       <RouterLink
         to="/"
         title="Home"
+        class="icon-btn bg-transparent"
       >
         <img
           src="/logo.png"
@@ -13,10 +14,13 @@
         >
       </RouterLink>
     </div>
-    <div class="flex-grow-1"/>
+    <div class="flex-grow-1" />
 
     <template v-if="mdAndUp">
-      <RouterLink class="home-btn" to="/">
+      <RouterLink
+        to="/"
+        class="icon-btn"
+      >
         <VImg
           :src="homeIcon"
           height="28"
@@ -29,48 +33,33 @@
         <a
           href="https://github.com/kiranparajuli589/vue-spotify"
           target="_blank"
-          class="flex-centered"
+          class="no-hover-underline"
         >
           Github
         </a>
         <RouterLink
+          class="no-hover-underline"
           to="/auth/register"
-          class="flex-centered"
         >
           Sign up
         </RouterLink>
         <RouterLink
           to="/auth/login"
-          class="login-link flex-centered"
+          class="filled-btn h-full md px-6 no-hover-underline"
         >
           Log in
         </RouterLink>
       </div>
     </template>
-    <div v-else class="mobile-links">
-      <RouterLink
-        to="/search"
-        class="icon-btn"
-      >
-        <VImg
-          src="@/assets/icons/svgs/search.svg"
-          height="24"
-          width="24"
-        />
-      </RouterLink>
-      <button class="filled-btn open-app-btn">
-        Open App
-      </button>
-      <MobileNavMenu />
-    </div>
+    <MobileAppMenu v-else />
   </nav>
 </template>
 <script setup>
 import {computed} from 'vue'
 import {useRouter} from "vue-router";
 import useResponsive from "@/composables/useResponsive.js";
-import MobileNavMenu from "@/components/core/layout/MobileNavMenu.vue";
 import SearchForm from "@/components/core/layout/SearchForm.vue";
+import MobileAppMenu from "@/components/core/layout/mobile/MobileAppMenu.vue";
 
 
 const router = useRouter()
@@ -94,76 +83,37 @@ const homeIcon = computed(() => {
   background: black
   height: 64px
 
+  .icon-btn
+    width: 50px
+    height: 50px
+    min-width: 50px
+
   @media (max-width: 768px)
     height: 48px
     padding: 4px 8px
 
   .branding
+    $authLinkWidth: 268.63px
     width: 100%
-    max-width: 368px
+    max-width: $authLinkWidth
     @media (max-width: 768px)
-      width: 368px
-
-    a
-      display: block
-      border-radius: 50%
-      width: fit-content
-      aspect-ratio: 1
-      height: 100%
-
-  .home-btn
-    cursor: pointer
-    height: 100%
-    width: auto
-    aspect-ratio: 1
-    background: rgba(255, 255, 255, 0.1)
-    margin-right: 1rem
-    border-radius: 50%
-    display: flex
-    justify-content: center
-    align-items: center
-
+      width: $authLinkWidth
+    &--link
+      @apply icon-btn
 
   .auth-links
+    margin-left: 1rem
     height: 100%
     display: flex
     align-items: center
-    gap: 1rem
-
-    @media (max-width: 1024px)
-      gap: 0.5rem
-      a
-        padding-inline: 1rem !important
+    gap: 1.8rem
+    @media only screen and (max-width: 768px)
+      gap: 1rem
 
     a
       height: 100%
-      color: white
-      text-decoration: none
-      padding-inline: 1.8rem
-      font-weight: 600
-      white-space: nowrap
-      text-overflow: ellipsis
-      overflow: hidden
 
     .login-link
       background: white
       color: black
-      border-radius: 32px
-
-  .mobile-links
-    display: flex
-    align-items: center
-    gap: 1rem
-
-    .open-app-btn
-      padding: .4rem 1rem
-      font-weight: 500
-
-    .icon-btn
-      height: 100%
-      width: auto
-      display: flex
-      justify-content: center
-      align-items: center
-      padding: 8px
 </style>

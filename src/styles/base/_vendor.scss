@@ -1,0 +1,26 @@
+.tooltip-menu--show {
+  .v-overlay__content {
+    $size: 8px;
+    &::before {
+      content: "";
+      position: absolute;
+      width: $size;
+      height: $size;
+      border-style: solid;
+      border-width: $size $size 0 $size;
+      border-color: rgb(79, 195, 247) transparent transparent transparent;
+      z-index: 1;
+      transform: rotate(90deg) translate(-50%);
+      top: 50%;
+      left: -10px;
+    }
+  }
+}
+
+.v-overlay {
+  .v-overlay__scrim {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: .95;
+  }
+}

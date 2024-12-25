@@ -1,8 +1,8 @@
 <template>
   <form
     :class="{
-      'd-flex': true,
-      'search-focused': isSearchInputFocused
+      'd-flex ml-2': true,
+      'search-focused': isSearchInputFocused,
     }"
     @submit="onSubmit"
   >
@@ -108,6 +108,11 @@ form
     border-left: 1px solid #909090
     padding-left: 10px
     border-radius: 0
+    &:hover
+      filter: brightness(1.2)
+    &:active
+      filter: brightness(0.8)
+      scale: 0.95
 
   input[type="search"]
     border: 1px solid transparent

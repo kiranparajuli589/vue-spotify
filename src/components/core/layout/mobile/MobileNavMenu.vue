@@ -12,6 +12,7 @@
           src="@/assets/icons/svgs/menu.svg"
           height="24"
           width="24"
+          alt="menu"
         />
       </button>
     </template>
@@ -33,10 +34,9 @@
           <li
             v-for="(item, index) in menuItems"
             :key="index"
-
           >
             <a :href="item.href">
-              {{item.label}}
+              {{ item.label }}
             </a>
           </li>
         </ul>
@@ -47,7 +47,7 @@
             :key="index"
           >
             <a :href="item.href">
-              {{item.label}}
+              {{ item.label }}
             </a>
           </li>
         </ul>
@@ -102,4 +102,6 @@ const menuLinks = [
         font-weight: 600
         &:first-child
           margin-bottom: .2rem
+    a
+      justify-content: start
 </style>

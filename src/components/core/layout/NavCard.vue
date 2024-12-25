@@ -12,19 +12,21 @@
       <div
         class="nav-card"
         v-bind="props"
+        :style="{
+          paddingLeft: appStore.isAppNavCollapsed ? '12px' : '16px',
+        }"
       >
         <template v-if="!appStore.isAppNavCollapsed">
           <h2>{{ title }}</h2>
           <p>{{ subtitle }}</p>
         </template>
-        <button
-          :class="{
-            'filled-btn': !appStore.isAppNavCollapsed,
-            'icon-btn': appStore.isAppNavCollapsed
-          }"
+        <Button
+          :variant="appStore.isAppNavCollapsed ? 'text' : 'filled'"
+          size="sm"
+          :class="appStore.isAppNavCollapsed ? 'text-md' : ''"
         >
           {{ btnText }}
-        </button>
+        </Button>
       </div>
     </template>
     <slot name="tooltip" />
@@ -33,6 +35,7 @@
 <script setup>
 import { computed, defineProps, defineModel } from "vue";
 import {useAppStore} from "@/stores/app.js";
+import Button from "@/components/designComponents/Button.vue";
 
 const tooltipMenu = defineModel({ required: true})
 
@@ -77,23 +80,6 @@ const btnText = computed(() => {
     font-size: 0.875rem;
     margin-bottom: 1rem;
     color: rgb(var(--v-theme-secondary));
-  }
-
-  button {
-    padding: 4px 12px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    &:hover {
-      transform: scale(1.1);
-    }
-    &:active {
-      transform: scale(1);
-      opacity: 0.7;
-    }
-
-    &.icon-btn {
-      font-size: 1.2rem
-    }
   }
 }
 </style>

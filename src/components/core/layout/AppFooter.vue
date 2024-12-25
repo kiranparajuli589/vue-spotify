@@ -76,6 +76,7 @@ footer.app_footer
       a
         font-size: 16px
         font-weight: 500
+        justify-content: start
 
     ul
       display: flex
@@ -86,6 +87,7 @@ footer.app_footer
           font-size: 16px
           font-weight: 400
           color: rgb(var(--v-theme-secondary))
+          justify-content: start
           &:hover
             color: white
 

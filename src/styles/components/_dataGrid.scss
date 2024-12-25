@@ -1,38 +1,8 @@
-
-
 .grid {
   &__root {
-    .truncate {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+    @media only screen and (max-width: 768px) {
+      overflow-x: auto;
     }
-
-    .pulse {
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(
-          90deg,
-          rgba(200, 200, 200, 0.1) 25%,
-          rgba(200, 200, 200, 0.2) 50%,
-          rgba(200, 200, 200, 0.1) 75%
-      );
-      background-size: 200% 100%;
-      animation: pulse 2s infinite;
-      border-radius: 4px;
-    }
-    @keyframes pulse {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
-    .grow {
-      flex-grow: 1;
-    }
-
   }
   &__header {
     padding-bottom: .5rem;

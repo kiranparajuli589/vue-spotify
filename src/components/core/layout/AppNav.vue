@@ -12,11 +12,11 @@
       <header
         :class="{
           'd-flex justify-space-between ga-2 pa-2': true,
-          'flex-column': appStore.isAppNavCollapsed
+          'flex-column ga-4': appStore.isAppNavCollapsed
         }"
       >
-        <button
-          class="flex-centered ga-2 menu-btn text-secondary"
+        <Button
+          class="text-secondary menu-btn"
           @click="appStore.toggleAppNav"
         >
           <v-tooltip
@@ -33,8 +33,8 @@
           <VImg
             v-if="appStore.isAppNavCollapsed"
             src="@/assets/icons/svgs/book_closed.svg"
-            height="24"
-            width="24"
+            height="32"
+            width="32"
           />
           <VImg
             v-else
@@ -47,14 +47,14 @@
               Your Library
             </template>
           </VFadeTransition>
-        </button>
-        <v-menu
-
-        >
+        </Button>
+        <v-menu>
           <template #activator="{props}">
-            <button
-              class="icon-btn flex-centered"
+            <Button
+              icon
+              :size="appStore.isAppNavCollapsed ? 'sm' : ''"
               v-bind="props"
+              class="add-playlist-btn"
             >
               <v-tooltip
                 activator="parent"
@@ -67,7 +67,7 @@
                 height="24"
                 width="24"
               />
-            </button>
+            </Button>
           </template>
 
           <VCard>
@@ -143,9 +143,12 @@
                 >
                   Not Now
                 </button>
-                <button class="filled-btn px-3 py-1 font-medium text-sm">
+                <RouterLink
+                  to="/auth/login"
+                  class="filled-btn px-3 py-1 font-medium text-sm"
+                >
                   Log in
-                </button>
+                </RouterLink>
               </div>
             </VCard>
           </template>
@@ -168,7 +171,7 @@
 
           <a
             href="#"
-            class="cookies-link"
+            class="cookies-link w-fit"
           >Cookies</a>
         </div>
       </VFadeTransition>
@@ -193,6 +196,7 @@ import NavCard from "@/components/core/layout/NavCard.vue";
 import {useAppStore} from "@/stores/app.js";
 import ChooseALanguageModal from "@/components/core/layout/ChooseALanguageModal.vue";
 import AppNavMenu from "@/constants/appNavMenu.js";
+import Button from "@/components/designComponents/Button.vue";
 
 const maxWidth = 500;
 const minWidth = 250;
@@ -259,7 +263,6 @@ const setShowTooltip = (key, value) => {
   transition: width 0.3s
   .menu-btn
     padding: 4px 8px
-    font-weight: 600
   .nav-links
     display: flex
     flex-direction: column
@@ -276,7 +279,8 @@ const setShowTooltip = (key, value) => {
         font-size: 11px
         &:hover
           text-decoration: none
-
+.add-playlist-btn
+  max-width: 48px
 .resizer
   height: 100%
   padding: 0 1.5px

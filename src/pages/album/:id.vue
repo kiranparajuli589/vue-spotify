@@ -36,28 +36,28 @@
         class-name="album--play"
       />
 
-      <button
-        class="icon-btn"
-      >
-        <VImg
-          src="@/assets/icons/contextMenu/add_circle.svg"
-          alt="Add to playlist"
-          height="32"
-          width="32"
-        />
-      </button>
+      <div class="d-flex align-center">
+        <Button icon>
+          <VImg
+            src="@/assets/icons/contextMenu/add_circle.svg"
+            alt="Add to playlist"
+            height="32"
+            width="32"
+          />
+        </Button>
 
-      <button
-        class="icon-btn"
-      >
-        <VImg
-          src="@/assets/icons/svgs/more_horz.svg"
-          alt="Add to playlist"
-          height="32"
-          width="32"
-          class="rotate-90"
-        />
-      </button>
+        <Button
+          icon
+        >
+          <VImg
+            src="@/assets/icons/svgs/more_horz.svg"
+            alt="Add to playlist"
+            height="32"
+            width="32"
+            class="rotate-90"
+          />
+        </Button>
+      </div>
       <VSpacer />
       <v-menu>
         <template #activator="{ props }">
@@ -158,6 +158,7 @@ import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactive
 import {useRouter} from "vue-router";
 import useGradientFromImage from "@/composables/useGradientFromImage.js";
 import CustomImage from "@/components/designComponents/CustomImage.vue";
+import Button from "@/components/designComponents/Button.vue";
 
 const store = useAppStore();
 const size = useHomeSectionReactiveGridSize()

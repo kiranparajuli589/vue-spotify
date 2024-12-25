@@ -2,12 +2,15 @@
   <footer class="preview_of_spotify_footer">
     <div class="info">
       <h5>Preview of Spotify</h5>
-      <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+      <p class="truncate">Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
     </div>
-    <div class="actions">
-      <button class="filled-btn">
+    <div class="actions h-full">
+      <Button
+        variant="filled"
+        class="h-full"
+      >
         Sign up free
-      </button>
+      </Button>
     </div>
   </footer>
 </template>
@@ -16,7 +19,6 @@
   background-image: linear-gradient(90deg, #af2896,#509bf5);
   padding: 8px;
   color: white;
-  margin-top: 10px;
 
   font-size: .875rem;
 
@@ -31,14 +33,8 @@
       font-weight: 600;
     }
   }
-
-  .actions {
-    height: 100%;
-    button {
-      height: 100%;
-      padding-inline: 1rem;
-      font-weight: 600;
-    }
-  }
 }
 </style>
+<script setup lang="ts">
+import Button from "@/components/designComponents/Button.vue";
+</script>
