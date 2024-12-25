@@ -51,12 +51,12 @@
             :columns="SongsMiniTableCols"
           />
 
-          <button
+          <Button
             v-if="fakeArtist.popularSongs.length > 5"
             @click="showMore = !showMore"
           >
             {{ showMore ? 'Show Less' : 'Show More' }}
-          </button>
+          </Button>
         </section>
       </section>
 
@@ -168,6 +168,7 @@ import ArtistAbout from "@/components/feature/artist/ArticleAbout.vue";
 import useStickyHeader from "@/composables/useStickyHeader.js";
 import {SongsMiniTableCols} from "@/constants/songsTableCols.js";
 import useStickyGridHeader from "@/composables/useStickyGridHeader.js";
+import Button from "@/components/designComponents/Button.vue";
 
 const router = useRouter()
 const artistId = ref(router.currentRoute.value.params.id)
