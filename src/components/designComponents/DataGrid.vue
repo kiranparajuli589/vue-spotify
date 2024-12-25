@@ -21,7 +21,7 @@ const props = defineProps({
   },
   minWidth: {
     type: String,
-    default: "800px"
+    default: "600px"
   },
   loadingRowCount: {
     type: Number,

@@ -30,6 +30,7 @@
   }
   .app_main {
     overflow-y: auto;
+    overflow-x: auto;
     margin-left: 8px;
     @media only screen and (max-width: 768px) {
       grid-column: 1 / -1;

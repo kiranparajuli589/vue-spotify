@@ -251,7 +251,6 @@ const showTooltip = reactive({
 })
 
 const setShowTooltip = (key, value) => {
-  console.log(showTooltip)
   showTooltip[key] = value;
 }
 

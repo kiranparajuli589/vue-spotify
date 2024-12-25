@@ -26,121 +26,128 @@
         </p>
       </div>
     </header>
-    <section
-      class="album--actions ease-transition"
-      :style="{
-        background: albumSectionBg
-      }"
-    >
-      <PlayBtn
-        class-name="album--play"
+    <section class="album--content">
+      <div
+        class="gradient ease-transition"
+        :style="{
+          background: albumSectionBg
+        }"
       />
 
-      <div class="d-flex align-center">
-        <Button icon>
-          <VImg
-            src="@/assets/icons/contextMenu/add_circle.svg"
-            alt="Add to playlist"
-            height="32"
-            width="32"
-          />
-        </Button>
-
-        <Button
-          icon
-        >
-          <VImg
-            src="@/assets/icons/svgs/more_horz.svg"
-            alt="Add to playlist"
-            height="32"
-            width="32"
-            class="rotate-90"
-          />
-        </Button>
-      </div>
-      <VSpacer />
-      <v-menu>
-        <template #activator="{ props }">
-          <button
-            class="change-view-btn"
-            v-bind="props"
-          >
-            <span>List</span>
-            <VImg
-              src="@/assets/icons/svgs/list.svg"
-              alt="List"
-              height="24"
-              width="24"
-            />
-          </button>
-        </template>
-        <VList
-          :color="Theme.colors.play"
-          density="compact"
-        >
-          <VListSubheader>
-            View as
-          </VListSubheader>
-          <VListItem
-            v-for="(item, index) in viewOptions"
-            :key="index"
-            :value="item.value"
-            :active="store.albumDetailViewAs === item.value"
-            @click="store.toggleAlbumDetailView"
-          >
-            <template #prepend>
-              <template v-if="store.albumDetailViewAs === item.value">
-                <VImg
-                  :src="item.activeIcon"
-                  :alt="item.iconAlt"
-                  height="24"
-                  width="24"
-                  class="mr-2"
-                />
-              </template>
-              <template v-else>
-                <VImg
-                  :src="item.icon"
-                  :alt="item.iconAlt"
-                  height="24"
-                  width="24"
-                  class="mr-2"
-                />
-              </template>
-              <VListItemTitle class="text-sm">
-                {{ item.title }}
-              </VListItemTitle>
-            </template>
-          </VListItem>
-        </VList>
-      </v-menu>
-    </section>
-    <section class="album--songs">
-      <DataGrid
-        :rows="album.songs"
-        :columns="AlbumSongsTableCols"
-        :compact="store.albumDetailViewAs === AlbumDetailView.Compact"
-      />
-    </section>
-    <section class="album--copyright">
-      <p>{{formattedDate}}</p>
-
-      <p>{{ copyrightText }}</p>
-    </section>
-
-    <section>
-      <GridSection
-        :title="`More by ${album.artist}`"
-        show-all-text="See discography"
+      <section
+        ref="stickyHeader"
+        class="album--actions ease-transition"
       >
-        <template #articles>
-          <AlbumCard
-            v-for="(recommendation, index) in album.recommendations.slice(0, size)"
-            :key="index"
-            :album="recommendation"
-          />
-        </template>
-      </GridSection>
+        <PlayBtn
+          class-name="album--play"
+        />
+
+        <div class="d-flex align-center">
+          <Button icon>
+            <VImg
+              src="@/assets/icons/contextMenu/add_circle.svg"
+              alt="Add to playlist"
+              height="32"
+              width="32"
+            />
+          </Button>
+
+          <Button
+            icon
+          >
+            <VImg
+              src="@/assets/icons/svgs/more_horz.svg"
+              alt="Add to playlist"
+              height="32"
+              width="32"
+              class="rotate-90"
+            />
+          </Button>
+        </div>
+        <VSpacer />
+        <v-menu>
+          <template #activator="{ props }">
+            <button
+              class="change-view-btn"
+              v-bind="props"
+            >
+              <span>List</span>
+              <VImg
+                src="@/assets/icons/svgs/list.svg"
+                alt="List"
+                height="24"
+                width="24"
+              />
+            </button>
+          </template>
+          <VList
+            :color="Theme.colors.play"
+            density="compact"
+          >
+            <VListSubheader>
+              View as
+            </VListSubheader>
+            <VListItem
+              v-for="(item, index) in viewOptions"
+              :key="index"
+              :value="item.value"
+              :active="store.albumDetailViewAs === item.value"
+              @click="store.toggleAlbumDetailView"
+            >
+              <template #prepend>
+                <template v-if="store.albumDetailViewAs === item.value">
+                  <VImg
+                    :src="item.activeIcon"
+                    :alt="item.iconAlt"
+                    height="24"
+                    width="24"
+                    class="mr-2"
+                  />
+                </template>
+                <template v-else>
+                  <VImg
+                    :src="item.icon"
+                    :alt="item.iconAlt"
+                    height="24"
+                    width="24"
+                    class="mr-2"
+                  />
+                </template>
+                <VListItemTitle class="text-sm">
+                  {{ item.title }}
+                </VListItemTitle>
+              </template>
+            </VListItem>
+          </VList>
+        </v-menu>
+      </section>
+      <section class="album--songs">
+        <DataGrid
+          :rows="album.songs"
+          :columns="AlbumSongsTableCols"
+          :compact="store.albumDetailViewAs === AlbumDetailView.Compact"
+        />
+      </section>
+      <section class="album--copyright">
+        <p>{{formattedDate}}</p>
+
+        <p>{{ copyrightText }}</p>
+      </section>
+
+      <section>
+        <GridSection
+          :title="`More by ${album.artist}`"
+          show-all-text="See discography"
+        >
+          <template #articles>
+            <AlbumCard
+              v-for="(recommendation, index) in album.recommendations.slice(0, size)"
+              :key="index"
+              :album="recommendation"
+            />
+          </template>
+        </GridSection>
+      </section>
     </section>
   </section>
 </template>
@@ -156,9 +163,10 @@ import GridSection from "@/components/core/home/GridSection.vue";
 import AlbumCard from "@/components/core/AlbumCard.vue";
 import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactiveGridSize.js";
 import {useRouter} from "vue-router";
-import useGradientFromImage from "@/composables/useGradientFromImage.js";
 import CustomImage from "@/components/designComponents/CustomImage.vue";
 import Button from "@/components/designComponents/Button.vue";
+import useStickyHeader from "@/composables/useStickyHeader.js";
+import useStickyGridHeader from "@/composables/useStickyGridHeader.js";
 
 const store = useAppStore();
 const size = useHomeSectionReactiveGridSize()
@@ -203,9 +211,10 @@ const router = useRouter()
 const album = ref(getAlbum())
 
 const {
+  stickyHeader,
   albumSectionBg,
   actionSectionBg
-} = useGradientFromImage(album.value.image)
+} = useStickyHeader(album.value.image)
 
 watch(() => router.currentRoute.value.params.id, () => {
   album.value = getAlbum()
@@ -216,21 +225,7 @@ watch(() => router.currentRoute.value.params.id, () => {
   })
 })
 
-onMounted(() => {
-  const appMain = document.querySelector(".app_main")
-  appMain.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  })
-  appMain.addEventListener("scroll", () => {
-    const gridHeader = document.querySelector(".grid__header")
-    if (appMain.scrollTop > 100) {
-      gridHeader.classList.add("scrolled")
-    } else {
-      gridHeader.classList.remove("scrolled")
-    }
-  })
-})
+useStickyGridHeader()
 
 const formattedDuration = computed(
   () => {

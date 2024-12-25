@@ -2,6 +2,10 @@
   &__root {
     @media only screen and (max-width: 768px) {
       overflow-x: auto;
+      .grid__header {
+        position: relative !important;
+        top: unset !important;
+      }
     }
   }
   &__header {

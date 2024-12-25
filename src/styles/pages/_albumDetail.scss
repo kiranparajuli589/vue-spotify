@@ -1,6 +1,38 @@
-.rotate-90 {
-  transform: rotate(90deg);
+.album, .artist {
+  width: 100%;
+  &--content {
+    position: relative;
+    .gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      z-index: 1;
+    }
+    section {
+      position: relative;
+      z-index: 2;
+      padding: 1rem;
+    }
+  }
+  &--actions {
+    position: sticky !important;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    .outline-btn {
+      padding: 0.5rem 1rem;
+    }
+    z-index: 3 !important;
+    * {
+      z-index: 3 !important;
+    }
+  }
 }
+
 .album {
   &--header {
     display: flex;

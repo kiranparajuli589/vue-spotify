@@ -41,33 +41,6 @@
       }
     }
   }
-  &--content {
-    position: relative;
-    .gradient {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      z-index: 1;
-    }
-
-    section {
-      position: relative;
-      z-index: 2;
-      padding: 1rem;
-    }
-  }
-
-  &--actions {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    gap: 1rem;
-    .outline-btn {
-      padding: 0.5rem 1rem;
-    }
-  }
 
   &--about {
     padding: 1rem;
@@ -119,6 +92,13 @@
           font-weight: 600;
         }
       }
+    }
+  }
+
+  section {
+    .grid__header {
+      position: sticky;
+      top: 80px;
     }
   }
 }

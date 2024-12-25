@@ -48,3 +48,23 @@ export const AlbumSongsTableCols = [
     }
   },
 ]
+
+export const SongsMiniTableCols = [
+  {
+    field: 'sn',
+    headerName: 'SN',
+    grid: 'minmax(50px, 60px)',
+    className: 'mr-2',
+    component: SnWithPlayBtn,
+    align: 'center'
+  },
+  {
+    field: 'title', headerName: 'Title',
+    width: 200,
+    component: SongTitle,
+    grid: 4,
+  },
+  {field: 'year', headerName: 'Year', width: 100},
+  {field: 'views', headerName: 'Views', width: 100},
+  {field: 'duration', headerName: 'Duration', width: 100},
+]

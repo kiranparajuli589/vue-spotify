@@ -125,7 +125,6 @@ const menuPositionStyle = () => {
   if (articleCard.value && menuRef.value) {
     const rect = articleCard.value?.getBoundingClientRect();
     const menuHeight = menuRef.value?.$el?.offsetHeight || 315; // Default height fallback
-    console.log(menuHeight)
     const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
 

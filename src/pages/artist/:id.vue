@@ -14,7 +14,10 @@
         }"
       />
 
-      <section class="artist--actions">
+      <section
+        ref="stickyHeader"
+        class="artist--actions"
+      >
         <PlayBtn
           class-name="artist--play"
         />
@@ -45,28 +48,7 @@
         <section class="px-0">
           <DataGrid
             :rows="showMore ? fakeArtist.popularSongs : fakeArtist.popularSongs.slice(0, 5)"
-            :columns="[
-              {
-                field: 'sn',
-                headerName: 'SN',
-                grid: 'minmax(50px, 60px)',
-                className: 'mr-2',
-                component: SnWithPlayBtn,
-                align: 'center'
-              },
-              {
-                field: 'title', headerName: 'Title',
-                width: 200,
-                component: SongTitle,
-                grid: 4,
-              },
-              {field: 'year', headerName: 'Year', width: 100},
-              {field: 'views', headerName: 'Views', width: 100},
-              {field: 'duration', headerName: 'Duration', width: 100},
-            ]"
-            :classes="{
-              root: 'overflow-x-auto',
-            }"
+            :columns="SongsMiniTableCols"
           />
 
           <button
@@ -175,17 +157,17 @@
 import {ref, watch} from "vue";
 import {useRouter} from "vue-router";
 import {faker} from "@faker-js/faker";
-import useGradientFromImage from "@/composables/useGradientFromImage.js";
 import PlayBtn from "@/components/core/home/PlayBtn.vue";
 import DataGrid from "@/components/designComponents/DataGrid.vue";
 import GridSection from "@/components/core/home/GridSection.vue";
 import useHomeSectionReactiveGridSize from "@/composables/useHomeSectionReactiveGridSize.js";
 import AlbumCard from "@/components/core/AlbumCard.vue";
 import ArtistCard from "@/components/core/ArtistCard.vue";
-import SnWithPlayBtn from "@/components/feature/search/songs/SnWithPlayBtn.vue";
-import SongTitle from "@/components/feature/search/songs/SongTitle.vue";
 import AlbumHeader from "@/components/feature/album/AlbumHeader.vue";
 import ArtistAbout from "@/components/feature/artist/ArticleAbout.vue";
+import useStickyHeader from "@/composables/useStickyHeader.js";
+import {SongsMiniTableCols} from "@/constants/songsTableCols.js";
+import useStickyGridHeader from "@/composables/useStickyGridHeader.js";
 
 const router = useRouter()
 const artistId = ref(router.currentRoute.value.params.id)
@@ -216,9 +198,12 @@ const fakeArtist = ref(generateFakeArtist())
 const discographyTabs = ref(generateDiscographyTabs())
 
 const {
-  headerSectionBg,
-  albumSectionBg
-} = useGradientFromImage(fakeArtist.value.image)
+  stickyHeader,
+  albumSectionBg,
+  headerSectionBg
+} = useStickyHeader(fakeArtist.value.image)
+useStickyGridHeader()
+
 
 const computedSize = useHomeSectionReactiveGridSize()
 

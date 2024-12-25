@@ -31,7 +31,6 @@ import Auth from "@/layouts/auth.vue";
 
 const {mdAndUp} = useResponsive()
 const router = useRouter()
-console.log(router.currentRoute.value.fullPath)
 const isAuthRoute = computed(() => {
   return router.currentRoute.value.fullPath.startsWith("/auth")
 })
