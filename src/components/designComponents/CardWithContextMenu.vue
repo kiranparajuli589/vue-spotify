@@ -46,8 +46,9 @@
             </template>
             <VListItemTitle
               class="ml-2"
-              v-text="item.title"
-            />
+            >
+              {{ item.title }}
+            </VListItemTitle>
             <v-menu
               v-if="item.children"
               activator="parent"
@@ -121,24 +122,38 @@ const uniqueMenuClass = `menu-${Math.random().toString(36).substring(7)}`;
 const uniqueArticleClass = `article-${Math.random().toString(36).substring(7)}`;
 
 const menuPositionStyle = () => {
-  if (articleCard.value) {
+  if (articleCard.value && menuRef.value) {
     const rect = articleCard.value?.getBoundingClientRect();
-    const rightEdge = rect.right + 200;
+    const menuHeight = menuRef.value?.$el?.offsetHeight || 315; // Default height fallback
+    console.log(menuHeight)
+    const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
-    if (rightEdge > windowWidth) {
-      menuRightEdge.value = true;
-      return {
-        top: `${menuPosition.value.y}px`,
-        right: `${windowWidth - menuPosition.value.x}px`,
-      };
-    }
-  }
-  menuRightEdge.value = false;
 
-  return {
-    top: `${menuPosition.value.y}px`,
-    left: `${menuPosition.value.x}px`,
-  };
+    const rightEdge = rect.right + 280; // Adjust 200px as the estimated menu width
+    const bottomEdge = menuPosition.value.y + menuHeight;
+
+    let style = {};
+
+    // Check if menu overflows the bottom of the screen
+    if (bottomEdge > windowHeight) {
+      style.top = `${menuPosition.value.y - menuHeight}px`; // Place menu above
+    } else {
+      style.top = `${menuPosition.value.y}px`;
+    }
+
+    // Check if menu overflows the right side of the screen
+    if (rightEdge > windowWidth) {
+      style.right = `${windowWidth - menuPosition.value.x}px`;
+      menuRightEdge.value = true;
+    } else {
+      style.left = `${menuPosition.value.x}px`;
+      menuRightEdge.value = false;
+    }
+
+    return style;
+  }
+
+  return {};
 };
 
 const openMenu = (event) => {
