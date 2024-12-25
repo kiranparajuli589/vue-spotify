@@ -54,6 +54,7 @@ article {
 
   img.main {
     border-radius: 50% !important;
+    width: 100% !important;
   }
 }
 </style>
