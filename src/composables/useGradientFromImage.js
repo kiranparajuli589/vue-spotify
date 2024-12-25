@@ -20,14 +20,14 @@ const useGradientFromImage = (image) => {
       return;
     }
     getImageColor(image)
-      .then(c => {
+      .then(({ color: c, light}) => {
         colorBg.value = c
         actionSectionBg.value = darkenByFactor(c, 30)
         let topEnd = addOpacityToRgb(c, 0.3)
         let bottomEnd = darkenByFactor(c, 20)
         headerSectionBg.value = `linear-gradient(180deg, ${topEnd}, ${bottomEnd})`
 
-        topEnd = darkenByFactor(c, 30)
+        topEnd = darkenByFactor(c, light ? 40 : 30)
         bottomEnd = "rgb(18 18 18)"
         albumSectionBg.value = `linear-gradient(180deg, ${topEnd}, ${bottomEnd})`
       })

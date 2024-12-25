@@ -191,7 +191,7 @@ const getRecommendation = () => ({
 })
 
 const getAlbum = () => ({
-  image: faker.image.urlPicsumPhotos({blur: 0}),
+  image: faker.image.urlPicsumPhotos({blur: 0, width: 768, height: 768}),
   title: faker.lorem.words({
     min: 1, max: 3
   }),

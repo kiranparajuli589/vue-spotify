@@ -1,6 +1,7 @@
 <template>
   <CardWithContextMenu
     :menu-items="menuItems"
+    :to="`/album/${radio.id}`"
   >
     <div class="position-relative">
       <CustomImage
@@ -29,6 +30,7 @@ defineProps({
 })
 
 const radio = {
+  id: faker.number.bigInt(),
   image: faker.image.urlPicsumPhotos({width: 200, height: 200, blur: 0}),
   subtitle: faker.lorem.words(6),
 }

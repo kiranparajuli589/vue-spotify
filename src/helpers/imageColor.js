@@ -26,11 +26,20 @@ function getImageColor(imageUrl) {
       }
 
       const totalPixels = data.length / 4;
+
+
+      // is color dark or light
+      const brightness = Math.sqrt(0.299 * r*r + 0.587 * g*g + 0.114 * b*b);
+
+
       r = Math.floor(r / totalPixels);
       g = Math.floor(g / totalPixels);
       b = Math.floor(b / totalPixels);
 
-      resolve(`rgb(${r}, ${g}, ${b})`);
+      resolve({
+        light: brightness > 130,
+        color: `rgb(${r}, ${g}, ${b})`
+    });
     };
 
     img.onerror = (err) => reject(err);

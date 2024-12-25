@@ -203,6 +203,7 @@ const handleOutsideRightClick = (event) => {
 article {
   position: relative;
   user-select: none;
+  cursor: pointer;
   img.main {
     aspect-ratio: 1;
     margin-bottom: .5rem;
