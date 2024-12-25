@@ -24,12 +24,11 @@ const useGradientFromImage = (image) => {
         colorBg.value = c
         actionSectionBg.value = darkenByFactor(c, 30)
         let topEnd = addOpacityToRgb(c, 0.3)
-        let bottomEnd = darkenByFactor(c, 20)
+        let bottomEnd = darkenByFactor(c, light ? 50 : 40)
         headerSectionBg.value = `linear-gradient(180deg, ${topEnd}, ${bottomEnd})`
 
-        topEnd = darkenByFactor(c, light ? 40 : 30)
-        bottomEnd = "rgb(18 18 18)"
-        albumSectionBg.value = `linear-gradient(180deg, ${topEnd}, ${bottomEnd})`
+        let superBase = "rgb(18 18 18)"
+        albumSectionBg.value = `linear-gradient(180deg, ${bottomEnd}, ${superBase})`
       })
   }
 
