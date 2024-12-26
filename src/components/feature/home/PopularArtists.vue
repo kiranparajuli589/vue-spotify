@@ -30,7 +30,7 @@ const props = defineProps({
   },
   noShowAll: {
     type: Boolean,
-    default: true
+    default: false
   },
   noHeader: {
     type: Boolean,

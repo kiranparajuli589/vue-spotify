@@ -8,12 +8,12 @@
   >
     <header v-if="!noHeader">
       <h3>
-        <a
-          href="#"
+        <RouterLink
+          :to="`/section/${faker.number.int({min: 1000000, max: 10000000})}`"
           class="title"
         >
           {{ title }}
-        </a>
+        </RouterLink>
       </h3>
       <RouterLink
         v-if="!noShowAll"
